@@ -22,17 +22,12 @@
 }
 html,body{height:100%;overflow:hidden}
 body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
-
-/* Particles canvas */
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0}
-
-/* Screen system */
 .scr{position:fixed;inset:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;z-index:1;background:var(--bg);opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s ease;transform:translateX(100%);-webkit-overflow-scrolling:touch}
 .scr.on{transform:translateX(0);opacity:1;pointer-events:auto;z-index:10}
 .scr.out{transform:translateX(-20%);opacity:0}
 .si{max-width:520px;width:100%;margin:0 auto;padding:16px 16px 32px;flex:1;position:relative;z-index:1}
 
-/* HOME */
 .hero{text-align:center;padding:24px 0 14px}
 .hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.8rem;color:var(--c1);animation:heroIn .6s ease}
 .hero .sub{font-size:.75rem;color:var(--mt);margin-top:4px;background:var(--c1l);display:inline-block;padding:3px 12px;border-radius:20px;animation:heroIn .6s ease .1s both}
@@ -57,7 +52,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .tbar2{background:linear-gradient(135deg,#fff8e8,#fff3d4);border:2px solid #f0e2b8;border-radius:14px;padding:12px 16px;margin:16px 0 6px;display:flex;align-items:center;justify-content:space-between}
 .tbar2 .tl{font-size:.8rem;font-weight:700;color:#9a8040}.tbar2 .tv{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;color:var(--goldd)}
 
-/* Difficulty Modal */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
 .modal-bg.on{display:flex;opacity:1}
 .modal{background:var(--card);border-radius:22px;padding:28px 24px;max-width:360px;width:90%;text-align:center;transform:scale(.9);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.15)}
@@ -74,7 +68,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .dbtn.d0:hover{border-color:var(--ok)}.dbtn.d1:hover{border-color:var(--goldd)}.dbtn.d2:hover{border-color:var(--no)}
 .modal .mcl{font-size:.8rem;color:var(--mt);cursor:pointer;text-decoration:underline}
 
-/* Game common */
 .gt{display:flex;align-items:center;gap:10px;padding:10px 0 8px;position:sticky;top:0;background:var(--bg);z-index:5}
 .gbk{width:36px;height:36px;border-radius:10px;border:2px solid var(--cb);background:var(--card);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .gbk:hover{border-color:var(--mt);transform:rotate(-10deg)}
@@ -85,7 +78,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .gsv{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem}
 .gsv.vsc{color:var(--goldd)}.gsv.vst{color:var(--ok)}.gsv.vtm{color:var(--no)}.gsv.vrn{color:var(--c3)}
 
-/* Speed bonus indicator */
 .speed-bonus{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka',sans-serif;font-weight:700;font-size:2rem;pointer-events:none;z-index:60;opacity:0;color:var(--goldd);text-shadow:0 2px 8px rgba(0,0,0,.15)}
 .speed-bonus.pop{animation:sbpop .8s ease forwards}
 @keyframes sbpop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}30%{transform:translate(-50%,-50%) scale(1.2)}60%{opacity:1;transform:translate(-50%,-60%) scale(1)}100%{opacity:0;transform:translate(-50%,-90%) scale(.8)}}
@@ -94,7 +86,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .tmf{height:100%;border-radius:3px;transition:width 1s linear}
 .tmf.tg{background:var(--ok)}.tmf.ty{background:var(--gold)}.tmf.tr{background:var(--no)}
 
-/* Per-question timer ring */
 .q-timer{width:48px;height:48px;position:absolute;top:12px;right:12px}
 .q-timer svg{transform:rotate(-90deg)}
 .q-timer circle{fill:none;stroke-width:3}
@@ -102,7 +93,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .q-timer .fg.warn{stroke:var(--gold)}.q-timer .fg.danger{stroke:var(--no)}
 .q-timer .qt-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;color:var(--mt)}
 
-/* Prompt card */
 .pc{background:var(--card);border:2px solid var(--cb);border-radius:16px;padding:18px 16px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;animation:pcIn .35s ease}
 @keyframes pcIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
@@ -114,7 +104,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .tn2{display:flex;gap:10px;justify-content:center;align-items:baseline;margin-bottom:4px}
 .tn2 .tn{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2rem;line-height:1}.tn2 .ts{font-size:1.2rem;color:var(--mt)}
 
-/* Grids */
 .ng{display:grid;gap:7px;margin-bottom:12px}.ng.g4{grid-template-columns:repeat(4,1fr)}.ng.g3{grid-template-columns:repeat(3,1fr)}
 .gb{padding:13px 4px;border:2px solid var(--cb);border-radius:12px;background:var(--card);cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.05rem;color:var(--tx);transition:all .15s;position:relative;overflow:hidden}
 .gb:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
@@ -125,7 +114,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 @keyframes gpop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
 @keyframes gwg{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
-/* Ripple */
 .gb .ripple{position:absolute;border-radius:50%;background:rgba(0,0,0,.06);transform:scale(0);animation:rip .5s ease}
 @keyframes rip{to{transform:scale(3);opacity:0}}
 
@@ -142,7 +130,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
 .btn-b{background:var(--c4);color:#fff}.btn-g{background:var(--c2);color:#fff}
 
-.hbox{background:var(--c3l);border:2px solid rgba(155,93,229,.12);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:.76rem;line-height:1.7;color:#6b4d8a;display:none}
+.hbox{background:var(--c3l);border:2px solid rgba(155,93,229,.12);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:.76rem;line-height:1.7;color:#6b4d8a;display:none;white-space:pre-line}
 .hbox.show{display:block;animation:fu .3s ease}
 .hbox .ht{font-weight:700;font-size:.64rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;color:var(--c3)}
 .ebox{background:#fffdf5;border:2px solid #f0e6c8;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.76rem;line-height:1.8;color:#7a6b40;display:none}
@@ -152,7 +140,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-100px);padding:9px 22px;border-radius:11px;font-weight:700;font-size:.85rem;z-index:999;transition:transform .3s;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.12)}
 .toast.show{transform:translateX(-50%) translateY(0)}.toast.tok{background:var(--ok);color:#fff}.toast.tno{background:var(--no);color:#fff}
 
-/* Confetti */
 .confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:2px;z-index:200;pointer-events:none;animation:confFall 1.5s ease forwards}
 @keyframes confFall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
 
@@ -166,12 +153,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .bp:hover{transform:translateY(-2px)}
 .bs{display:inline-block;padding:10px 24px;border:2px solid var(--cb);border-radius:12px;background:var(--card);color:var(--tx);font-family:'Noto Sans KR',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;margin-left:8px;transition:all .2s}
 .bs:hover{border-color:var(--mt)}
-
-/* New best animation */
 .new-best{color:var(--no);font-size:.75rem;font-weight:700;animation:nblink 1s ease infinite}
 @keyframes nblink{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* Firebase auth + ranking */
 .topbar{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-bottom:14px}
 .authcard,.rankcard{background:var(--card);border:2px solid var(--cb);border-radius:18px;padding:14px}
 .authcard{flex:1 1 220px}
@@ -203,13 +187,19 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .rank-mode-title{margin-top:8px;font-size:.72rem;font-weight:800;color:var(--mt)}
 .hidden{display:none!important}
 
-@media(max-width:420px){.pc .pb{font-size:2rem}.tn2 .tn{font-size:1.7rem}.ng.g4{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:1.5rem}.topbar{flex-direction:column}.rank-tabs{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){
+  .pc .pb{font-size:2rem}
+  .tn2 .tn{font-size:1.7rem}
+  .ng.g4{grid-template-columns:repeat(3,1fr)}
+  .hero h1{font-size:1.5rem}
+  .topbar{flex-direction:column}
+  .rank-tabs{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 <body>
 <canvas id="particles"></canvas>
 
-<!-- ════ HOME ════ -->
 <div class="scr on" id="home"><div class="si">
   <div class="hero"><h1>📐 약수와 배수 마스터</h1><span class="sub">5학년 1학기 · 2단원 완전정복</span></div>
 
@@ -228,7 +218,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
         <button class="btn-sm btn-ghost" id="nickBtn" onclick="changeNickname()">닉네임 변경</button>
         <button class="btn-sm btn-ghost hidden" id="logoutBtn" onclick="logoutUser()">로그아웃</button>
       </div>
-      <div class="firebase-note">처음에는 아래 firebaseConfig만 채우면 되고, 로그인 후 게임 종료 시 랭킹이 자동 갱신됩니다.</div>
+      <div class="firebase-note">firebaseConfig를 채우고 로그인하면 랭킹이 자동 저장됩니다.</div>
     </div>
 
     <div class="rankcard">
@@ -252,20 +242,21 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 
   <div class="slbl">📘 약수와 배수</div>
   <div class="cards">
-    <div class="sc s1" onclick="openDiff(1)"><div class="ico">🔍</div><div class="nfo"><h3>1단계: 약수 찾기</h3><p>약수를 순서대로 찾기</p></div><div class="sr"><div class="sv" id="hs1">-</div><div class="sl">최고점수</div></div></div>
-    <div class="sc s2" onclick="openDiff(2)"><div class="ico">🚫</div><div class="nfo"><h3>2단계: 배수 아닌 것</h3><p>배수가 아닌 것 골라내기</p></div><div class="sr"><div class="sv" id="hs2">-</div><div class="sl">최고점수</div></div></div>
-    <div class="sc s3" onclick="openDiff(3)"><div class="ico">⚡</div><div class="nfo"><h3>3단계: 배수 판별</h3><p>배수인지 빠르게 판별</p></div><div class="sr"><div class="sv" id="hs3">-</div><div class="sl">최고점수</div></div></div>
+    <div class="sc s1" onclick="openDiff(1)"><div class="ico">🔍</div><div class="nfo"><h3>1단계: 약수 찾기</h3><p>약수를 순서대로 찾기</p></div><div class="sr"><div class="sv" id="hs1">-</div><div class="sl">단계 합산</div></div></div>
+    <div class="sc s2" onclick="openDiff(2)"><div class="ico">🚫</div><div class="nfo"><h3>2단계: 배수 아닌 것</h3><p>배수가 아닌 것 골라내기</p></div><div class="sr"><div class="sv" id="hs2">-</div><div class="sl">단계 합산</div></div></div>
+    <div class="sc s3" onclick="openDiff(3)"><div class="ico">⚡</div><div class="nfo"><h3>3단계: 배수 판별</h3><p>배수인지 빠르게 판별</p></div><div class="sr"><div class="sv" id="hs3">-</div><div class="sl">단계 합산</div></div></div>
   </div>
+
   <div class="slbl">📗 공약수 · 최대공약수 · 최소공배수</div>
   <div class="cards">
-    <div class="sc s4" onclick="openDiff(4)"><div class="ico">🎯</div><div class="nfo"><h3>4단계: 공약수 찾기</h3><p>두 수의 공약수 모두 고르기</p></div><div class="sr"><div class="sv" id="hs4">-</div><div class="sl">최고점수</div></div></div>
-    <div class="sc s5" onclick="openDiff(5)"><div class="ico">👑</div><div class="nfo"><h3>5단계: 최대공약수</h3><p>최대공약수 구하기</p></div><div class="sr"><div class="sv" id="hs5">-</div><div class="sl">최고점수</div></div></div>
-    <div class="sc s6" onclick="openDiff(6)"><div class="ico">🚀</div><div class="nfo"><h3>6단계: 최소공배수</h3><p>최소공배수 구하기</p></div><div class="sr"><div class="sv" id="hs6">-</div><div class="sl">최고점수</div></div></div>
+    <div class="sc s4" onclick="openDiff(4)"><div class="ico">🎯</div><div class="nfo"><h3>4단계: 공약수 찾기</h3><p>두 수의 공약수 모두 고르기</p></div><div class="sr"><div class="sv" id="hs4">-</div><div class="sl">단계 합산</div></div></div>
+    <div class="sc s5" onclick="openDiff(5)"><div class="ico">👑</div><div class="nfo"><h3>5단계: 최대공약수</h3><p>최대공약수 구하기</p></div><div class="sr"><div class="sv" id="hs5">-</div><div class="sl">단계 합산</div></div></div>
+    <div class="sc s6" onclick="openDiff(6)"><div class="ico">🚀</div><div class="nfo"><h3>6단계: 최소공배수</h3><p>최소공배수 구하기</p></div><div class="sr"><div class="sv" id="hs6">-</div><div class="sl">단계 합산</div></div></div>
   </div>
+
   <div class="tbar2"><span class="tl">🏆 총점</span><span class="tv" id="htot">0점</span></div>
 </div></div>
 
-<!-- ════ DIFFICULTY MODAL ════ -->
 <div class="modal-bg" id="mdl">
   <div class="modal">
     <h3 id="mdl-title">난이도 선택</h3>
@@ -278,8 +269,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
     <span class="mcl" onclick="closeDiff()">취소</span>
   </div>
 </div>
-
-<!-- ════ GAME SCREENS ════ -->
 <div class="scr" id="scr1"><div class="si">
   <div class="gt"><button class="gbk" onclick="back()">←</button><span class="gtt" style="color:var(--c1)">🔍 약수 찾기</span></div>
   <div class="gs"><div class="gsi"><div class="gsl">점수</div><div class="gsv vsc" id="v1sc">0</div></div><div class="gsi"><div class="gsl">라운드</div><div class="gsv vrn" id="v1rn">1/10</div></div><div class="gsi"><div class="gsl">시간</div><div class="gsv vtm" id="v1tm">90</div></div></div>
@@ -344,7 +333,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-// ─── Core Utils ───
 const $=id=>document.getElementById(id);
 const pk=a=>a[Math.floor(Math.random()*a.length)];
 function sh(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -355,19 +343,16 @@ function commonDivisors(a,b){const da=dvs(a);return da.filter(x=>b%x===0)}
 function dS(n){return String(n).split('').reduce((s,c)=>s+ +c,0)}
 function dSt(n){return String(n).split('').join('+')}
 
-// ─── Particles ───
 const cv=$('particles'),cx=cv.getContext('2d');
 let pts=[];
 function initParts(){cv.width=innerWidth;cv.height=innerHeight;pts=[];for(let i=0;i<35;i++)pts.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*3+1,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,o:Math.random()*.15+.03})}
 function drawParts(){cx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=`rgba(255,107,53,${p.o})`;cx.fill()});requestAnimationFrame(drawParts)}
 initParts();drawParts();addEventListener('resize',initParts);
 
-// ─── Toast, Confetti, Speed Bonus ───
 function toast(m,ok){const t=$('toast');t.className='toast '+(ok?'tok':'tno');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),ok?800:1400)}
 function confetti(){const colors=['#ff6b35','#2ec4b6','#9b5de5','#ffd166','#ff006e','#06d6a0'];for(let i=0;i<25;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'%';c.style.background=pk(colors);c.style.animationDuration=(1+Math.random())+'s';c.style.animationDelay=(Math.random()*.5)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2500)}}
 function showSpeedBonus(pts){if(pts<=0)return;const el=$('sbonus');el.textContent='+'+pts+' 스피드!';el.className='speed-bonus pop';setTimeout(()=>el.className='speed-bonus',900)}
 
-// ─── Per-Question Timer ───
 const CIRC=125.66;
 let qTmr=null,qLeft=0,qMax=0;
 function startQTimer(stage,max){
@@ -385,14 +370,26 @@ function startQTimer(stage,max){
 function stopQTimer(){clearInterval(qTmr)}
 function getSpeedBonus(){
   const ratio=qLeft/qMax;
-  if(ratio>.8)return 15;if(ratio>.6)return 10;if(ratio>.4)return 5;if(ratio>.2)return 2;return 0;
+  if(ratio>.8)return 15;
+  if(ratio>.6)return 10;
+  if(ratio>.4)return 5;
+  if(ratio>.2)return 2;
+  return 0;
 }
 
-// ─── State ───
 let CS=0,pendingStage=0,tmr=null,tL=60,tT=60;
-let best=[0,0,0,0,0,0],dfs=[0,0,0,0,0,0];
+let bestByDiff=[
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0]
+];
+let dfs=[0,0,0,0,0,0];
 let firebaseReady=false, auth=null, db=null, currentUser=null, leaderboardCache=[];
 let currentRankMode='total';
+
 const firebaseConfig={
   apiKey: "AIzaSyBcwmpg1h7r1qmK-aSGw4iZ8vwDDH0DMwI",
   authDomain: "ranking2-3b05c.firebaseapp.com",
@@ -401,27 +398,64 @@ const firebaseConfig={
   messagingSenderId: "629334952678",
   appId: "1:629334952678:web:06f17391dcdb9416e24927"
 };
-try{const s=localStorage.getItem('ym8');if(s)best=JSON.parse(s)}catch(e){}
-updHome();
+
+try{
+  const s=localStorage.getItem('ym8_bestByDiff');
+  if(s){
+    const parsed=JSON.parse(s);
+    if(Array.isArray(parsed) && parsed.length===6){
+      bestByDiff=parsed.map(row=>{
+        const safe=Array.isArray(row)?row:[0,0,0];
+        return [Number(safe[0])||0, Number(safe[1])||0, Number(safe[2])||0];
+      });
+    }
+  }else{
+    const old=localStorage.getItem('ym8');
+    if(old){
+      const oldParsed=JSON.parse(old);
+      if(Array.isArray(oldParsed) && oldParsed.length===6){
+        bestByDiff=oldParsed.map(v=>[Number(v)||0,0,0]);
+      }
+    }
+  }
+}catch(e){}
+  updHome();
 initFirebase();
 setTimeout(()=>switchRankMode('total'),0);
 
-function save(){try{localStorage.setItem('ym8',JSON.stringify(best))}catch(e){}}
-function getTotalScore(arr=best){return arr.reduce((a,b)=>a+b,0)}
-function updHome(){for(let i=0;i<6;i++)$('hs'+(i+1)).textContent=best[i]>0?best[i]+'점':'-';$('htot').textContent=getTotalScore(best)+'점';updateMyRankBox()}
+function save(){
+  try{ localStorage.setItem('ym8_bestByDiff', JSON.stringify(bestByDiff)); }catch(e){}
+}
+function getStageTotal(stageIndex){ return bestByDiff[stageIndex].reduce((a,b)=>a+b,0); }
+function getAllStageTotals(){ return bestByDiff.map((_,i)=>getStageTotal(i)); }
+function getGrandTotal(){ return bestByDiff.reduce((sum,row)=>sum+row.reduce((a,b)=>a+b,0),0); }
+
+function updHome(){
+  for(let i=0;i<6;i++){
+    const total=getStageTotal(i);
+    $('hs'+(i+1)).textContent=total>0?total+'점':'-';
+  }
+  $('htot').textContent=getGrandTotal()+'점';
+  updateMyRankBox();
+}
+
 function getDisplayName(u){if(!u)return '로그인 필요';return u.displayName||localStorage.getItem('ym8_nickname')||'익명 사용자'}
 function getAvatarText(name){return (name||'?').trim().charAt(0).toUpperCase()||'?'}
 function isFirebaseConfigured(){return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_') && firebaseConfig.projectId && !firebaseConfig.projectId.includes('YOUR_')}
+
 function setAuthUI(){
   const logged=!!currentUser;
   const name=getDisplayName(currentUser);
   $('userName').textContent=name;
   $('userAvatar').textContent=getAvatarText(name);
-  $('userInfo').textContent=logged ? ((currentUser.email||'이메일 비공개') + ' · 총점 ' + getTotalScore(best) + '점') : '닉네임과 점수를 저장할 수 있어요';
+  $('userInfo').textContent=logged
+    ? ((currentUser.email||'이메일 비공개') + ' · 총점 ' + getGrandTotal() + '점')
+    : '닉네임과 점수를 저장할 수 있어요';
   $('authState').textContent = firebaseReady ? (logged ? '로그인됨' : '로그인 안 됨') : 'Firebase 연결 전';
   $('logoutBtn').classList.toggle('hidden', !logged);
   $('nickBtn').textContent = logged ? '닉네임 변경' : '닉네임 미리 입력';
 }
+
 async function initFirebase(){
   setAuthUI();
   if(!window.firebase || !isFirebaseConfigured()){
@@ -436,9 +470,7 @@ async function initFirebase(){
     auth.onAuthStateChanged(async user=>{
       currentUser=user||null;
       setAuthUI();
-      if(user){
-        await syncScoreToFirebase(false);
-      }
+      if(user) await syncScoreToFirebase(false);
       loadLeaderboard(currentRankMode,true);
     });
   }catch(e){
@@ -448,16 +480,14 @@ async function initFirebase(){
     setAuthUI();
   }
 }
-function getRankField(mode=currentRankMode){
-  return mode==='total' ? 'totalScore' : 'stage'+mode;
-}
-function getRankModeLabel(mode=currentRankMode){
-  return mode==='total' ? '전체 랭킹 TOP 10' : `${mode}단계 랭킹 TOP 10`;
-}
+
+function getRankField(mode=currentRankMode){ return mode==='total' ? 'totalScore' : 'stage'+mode; }
+function getRankModeLabel(mode=currentRankMode){ return mode==='total' ? '전체 랭킹 TOP 10' : `${mode}단계 랭킹 TOP 10`; }
 function getRankScore(row,mode=currentRankMode){
   if(mode==='total') return row.totalScore||0;
-  return row['stage'+mode] ?? (Array.isArray(row.stageBest) ? (row.stageBest[mode-1]||0) : 0);
+  return row['stage'+mode] ?? 0;
 }
+
 function switchRankMode(mode){
   currentRankMode=mode;
   document.querySelectorAll('.rank-tab').forEach(btn=>btn.classList.remove('on'));
@@ -465,22 +495,31 @@ function switchRankMode(mode){
   $('rankModeTitle').textContent=getRankModeLabel(mode);
   loadLeaderboard(mode,true);
 }
+
 function loadLocalLeaderboardFallback(){
   const name=localStorage.getItem('ym8_nickname')||'내 기기';
+  const stageTotals=getAllStageTotals();
   leaderboardCache=[{
     displayName:name,
-    totalScore:getTotalScore(best),
-    stageBest:best.slice(),
-    stage1:best[0]||0, stage2:best[1]||0, stage3:best[2]||0,
-    stage4:best[3]||0, stage5:best[4]||0, stage6:best[5]||0
+    totalScore:getGrandTotal(),
+    stage1: stageTotals[0],
+    stage2: stageTotals[1],
+    stage3: stageTotals[2],
+    stage4: stageTotals[3],
+    stage5: stageTotals[4],
+    stage6: stageTotals[5],
+    stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
+    stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
+    stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
+    stage4_easy: bestByDiff[3][0], stage4_normal: bestByDiff[3][1], stage4_hard: bestByDiff[3][2],
+    stage5_easy: bestByDiff[4][0], stage5_normal: bestByDiff[4][1], stage5_hard: bestByDiff[4][2],
+    stage6_easy: bestByDiff[5][0], stage6_normal: bestByDiff[5][1], stage6_hard: bestByDiff[5][2]
   }].filter(x=>x.totalScore>0 || getRankScore(x,currentRankMode)>0);
   renderLeaderboard();
 }
+
 async function loginWithGoogle(){
-  if(!firebaseReady||!auth){
-    toast('firebaseConfig를 먼저 입력하세요.',0);
-    return;
-  }
+  if(!firebaseReady||!auth){ toast('firebaseConfig를 먼저 입력하세요.',0); return; }
   try{
     const provider=new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({prompt:'select_account'});
@@ -491,11 +530,9 @@ async function loginWithGoogle(){
     toast('로그인에 실패했어요.',0);
   }
 }
-async function logoutUser(){
-  if(!auth) return;
-  await auth.signOut();
-  toast('로그아웃 되었어요.',1);
-}
+
+async function logoutUser(){ if(!auth) return; await auth.signOut(); toast('로그아웃 되었어요.',1); }
+
 function changeNickname(){
   const base=currentUser?.displayName||localStorage.getItem('ym8_nickname')||'';
   const next=prompt('표시할 닉네임을 입력하세요.', base);
@@ -508,24 +545,33 @@ function changeNickname(){
   renderLeaderboard();
   toast('닉네임이 저장되었어요.',1);
 }
+
 async function syncScoreToFirebase(force=false){
   if(!firebaseReady || !db || !currentUser) return;
-  const totalScore=getTotalScore(best);
+  const totalScore=getGrandTotal();
+  const stageTotals=getAllStageTotals();
   if(!force && totalScore<=0) return;
+
   const payload={
     uid: currentUser.uid,
     displayName: (localStorage.getItem('ym8_nickname')||currentUser.displayName||'익명 사용자').slice(0,12),
     email: currentUser.email||'',
     totalScore,
-    stageBest: best.slice(),
-    stage1: best[0]||0,
-    stage2: best[1]||0,
-    stage3: best[2]||0,
-    stage4: best[3]||0,
-    stage5: best[4]||0,
-    stage6: best[5]||0,
+    stage1: stageTotals[0],
+    stage2: stageTotals[1],
+    stage3: stageTotals[2],
+    stage4: stageTotals[3],
+    stage5: stageTotals[4],
+    stage6: stageTotals[5],
+    stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
+    stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
+    stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
+    stage4_easy: bestByDiff[3][0], stage4_normal: bestByDiff[3][1], stage4_hard: bestByDiff[3][2],
+    stage5_easy: bestByDiff[4][0], stage5_normal: bestByDiff[4][1], stage5_hard: bestByDiff[4][2],
+    stage6_easy: bestByDiff[5][0], stage6_normal: bestByDiff[5][1], stage6_hard: bestByDiff[5][2],
     updatedAt: firebase.firestore.FieldValue.serverTimestamp()
   };
+
   try{
     await db.collection('ym8_rankings').doc(currentUser.uid).set(payload,{merge:true});
     loadLeaderboard(currentRankMode,true);
@@ -533,37 +579,58 @@ async function syncScoreToFirebase(force=false){
     console.error(e);
   }
 }
+
 async function loadLeaderboard(mode=currentRankMode, force=false){
   currentRankMode=mode;
   $('rankModeTitle').textContent=getRankModeLabel(mode);
-  if(!firebaseReady || !db){loadLocalLeaderboardFallback();return;}
+  if(!firebaseReady || !db){ loadLocalLeaderboardFallback(); return; }
   try{
     const field=getRankField(mode);
     const snap=await db.collection('ym8_rankings').orderBy(field,'desc').limit(10).get();
-    leaderboardCache=snap.docs
-      .map(doc=>({id:doc.id,...doc.data()}))
-      .filter(row=>getRankScore(row,mode)>0);
+    leaderboardCache=snap.docs.map(doc=>({id:doc.id,...doc.data()})).filter(row=>getRankScore(row,mode)>0);
     renderLeaderboard();
   }catch(e){
     console.error(e);
     if(force) toast('랭킹을 불러오지 못했어요.',0);
   }
 }
+
 function renderLeaderboard(){
   const box=$('rankList');
-  if(!leaderboardCache.length){box.innerHTML='<div class="rank-empty">아직 등록된 점수가 없어요.</div>';updateMyRankBox();return;}
-  box.innerHTML=leaderboardCache.map((row,idx)=>`<div class="rank-item"><div class="rank-pos">${idx+1}</div><div class="rank-name">${row.displayName||'익명 사용자'}</div><div class="rank-score">${getRankScore(row,currentRankMode)}</div></div>`).join('');
+  if(!leaderboardCache.length){
+    box.innerHTML='<div class="rank-empty">아직 등록된 점수가 없어요.</div>';
+    updateMyRankBox();
+    return;
+  }
+
+  box.innerHTML=leaderboardCache.map((row,idx)=>{
+    let sub='';
+    if(currentRankMode!=='total'){
+      const stage=currentRankMode;
+      sub=`<div style="font-size:.62rem;color:var(--mt);margin-top:2px;">쉬 ${row[`stage${stage}_easy`]||0} / 보 ${row[`stage${stage}_normal`]||0} / 어 ${row[`stage${stage}_hard`]||0}</div>`;
+    }
+    return `<div class="rank-item"><div class="rank-pos">${idx+1}</div><div class="rank-name">${row.displayName||'익명 사용자'}${sub}</div><div class="rank-score">${getRankScore(row,currentRankMode)}</div></div>`;
+  }).join('');
+
   updateMyRankBox();
 }
+
 function updateMyRankBox(){
   const name=currentUser?getDisplayName(currentUser):(localStorage.getItem('ym8_nickname')||'내 기기');
-  const myScore=currentRankMode==='total' ? getTotalScore(best) : (best[currentRankMode-1]||0);
-  const idx=leaderboardCache.findIndex(x=> (currentUser && x.uid===currentUser.uid) || (!currentUser && (x.displayName===name && getRankScore(x,currentRankMode)===myScore)));
+  const myScore=currentRankMode==='total' ? getGrandTotal() : getStageTotal(currentRankMode-1);
+  const idx=leaderboardCache.findIndex(x=>(currentUser && x.uid===currentUser.uid) || (!currentUser && (x.displayName===name && getRankScore(x,currentRankMode)===myScore)));
   const modeLabel=currentRankMode==='total' ? '전체' : `${currentRankMode}단계`;
-  $('myRankBox').textContent= idx>=0 ? `내 ${modeLabel} 랭킹: ${idx+1}위 · ${name} · ${myScore}점` : `내 ${modeLabel} 점수: ${name} · ${myScore}점`;
+
+  if(currentRankMode==='total'){
+    $('myRankBox').textContent = idx>=0 ? `내 ${modeLabel} 랭킹: ${idx+1}위 · ${name} · ${myScore}점` : `내 ${modeLabel} 점수: ${name} · ${myScore}점`;
+  }else{
+    const d=bestByDiff[currentRankMode-1];
+    $('myRankBox').textContent = idx>=0
+      ? `내 ${modeLabel} 랭킹: ${idx+1}위 · ${name} · ${myScore}점 (쉬 ${d[0]} / 보 ${d[1]} / 어 ${d[2]})`
+      : `내 ${modeLabel} 점수: ${name} · ${myScore}점 (쉬 ${d[0]} / 보 ${d[1]} / 어 ${d[2]})`;
+  }
 }
 
-// ─── Difficulty Modal ───
 const stageNames=['','약수 찾기','배수 아닌 것','배수 판별','공약수 찾기','최대공약수','최소공배수'];
 const diffDescs=[
   ['10~20 범위','20~50 범위','50~96 범위'],
@@ -578,31 +645,46 @@ function openDiff(n){
   $('mdl-title').textContent=stageNames[n]+' 난이도';
   $('mdl-desc').textContent='난이도를 선택하고 시작하세요!';
   for(let i=0;i<3;i++)$('dd'+i).textContent=diffDescs[n-1][i];
-  const m=$('mdl');m.classList.add('on');
+  $('mdl').classList.add('on');
 }
 function closeDiff(){$('mdl').classList.remove('on')}
-function startWithDiff(d){
-  closeDiff();dfs[pendingStage-1]=d;
-  goStage(pendingStage);
-}
+function startWithDiff(d){ closeDiff(); dfs[pendingStage-1]=d; goStage(pendingStage); }
 
-// ─── Navigation ───
 function goStage(n){
-  CS=n;$('home').classList.remove('on');$('home').classList.add('out');
-  const s=$('scr'+n);s.classList.add('on');
+  CS=n;
+  $('home').classList.remove('on');
+  $('home').classList.add('out');
+  $('scr'+n).classList.add('on');
   setTimeout(()=>$('home').classList.remove('out'),400);
   [,st1,st2,st3,st4,st5,st6][n]();
 }
 function back(){clearInterval(tmr);stopQTimer();$('scr'+CS).classList.remove('on');$('home').classList.add('on');updHome();CS=0}
+
 async function showEnd(s,sc,msg){
   stopQTimer();
-  const isNew=sc>best[s-1];
-  if(isNew){best[s-1]=sc;save();confetti();updHome();await syncScoreToFirebase(false)}
+  const diff=dfs[s-1];
+  const oldScore=bestByDiff[s-1][diff];
+  const isNew=sc>oldScore;
+
+  if(isNew){
+    bestByDiff[s-1][diff]=sc;
+    save();
+    confetti();
+    updHome();
+    await syncScoreToFirebase(false);
+  }
+
   const t=['🔍 약수 찾기','🚫 배수 아닌 것','⚡ 배수 판별','🎯 공약수 찾기','👑 최대공약수','🚀 최소공배수'];
-  $('et').textContent=t[s-1]+' 결과';$('esc').textContent=sc+'점';$('em').textContent=msg;
-  $('enb').innerHTML=isNew?'<span class="new-best">🎉 새로운 최고 기록!</span>':'';
-  const o=$('eov');o.style.display='flex';requestAnimationFrame(()=>o.classList.add('show'));
+  const diffNames=['쉬움','보통','어려움'];
+  $('et').textContent=t[s-1]+' 결과';
+  $('esc').textContent=sc+'점';
+  $('em').textContent=msg + ` (${diffNames[diff]} 최고점 기준)`;
+  $('enb').innerHTML=isNew ? `<span class="new-best">🎉 ${diffNames[diff]} 난이도 새로운 최고 기록!</span>` : '';
+  const o=$('eov');
+  o.style.display='flex';
+  requestAnimationFrame(()=>o.classList.add('show'));
 }
+
 function replay(){$('eov').classList.remove('show');$('eov').style.display='none';[,st1,st2,st3,st4,st5,st6][CS]()}
 function tohome(){$('eov').classList.remove('show');$('eov').style.display='none';back()}
 
@@ -610,7 +692,6 @@ function uBar(id){const p=tL/tT*100;const b=$(id);b.style.width=p+'%';b.classNam
 function sTmr(tId,bId,cb){clearInterval(tmr);tmr=setInterval(()=>{tL--;$(tId).textContent=tL;uBar(bId);if(tL<=0){clearInterval(tmr);cb()}},1000)}
 function eM(s,a,b,c){return s>=a?c[0]:s>=b?c[1]:c[2]}
 
-// Ripple on buttons
 document.addEventListener('click',e=>{
   const btn=e.target.closest('.gb');if(!btn)return;
   const r=document.createElement('span');r.className='ripple';
@@ -618,11 +699,10 @@ document.addEventListener('click',e=>{
   r.style.width=r.style.height=Math.max(rect.width,rect.height)+'px';
   r.style.left=(e.clientX-rect.left-rect.width/2)+'px';
   r.style.top=(e.clientY-rect.top-rect.height/2)+'px';
-  btn.appendChild(r);setTimeout(()=>r.remove(),600);
+  btn.appendChild(r);
+  setTimeout(()=>r.remove(),600);
 });
-
-// ═══════ S1: Divisor Finding ═══════
-let S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};
+  let S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};
 function st1(){S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};tL=tT=90;$('v1tm').textContent=90;$('v1sc').textContent=0;uBar('b1');nx1();sTmr('v1tm','b1',()=>showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
 function nx1(){
   S1.rn++;
@@ -635,12 +715,7 @@ function nx1(){
 
   $('v1rn').textContent=S1.rn+'/'+S1.mx;
   const d=dfs[0];
-  const ps=d===0
-    ? [6,8,10,12,14,15,16,18,20]
-    : d===1
-      ? [24,28,30,32,36,40,42,48]
-      : [54,56,60,64,72,80,84,90,96];
-
+  const ps=d===0 ? [6,8,10,12,14,15,16,18,20] : d===1 ? [24,28,30,32,36,40,42,48] : [54,56,60,64,72,80,84,90,96];
   S1.tg=pk(ps);
   S1.ds=dvs(S1.tg);
   S1.ni=0;
@@ -652,14 +727,10 @@ function nx1(){
 
   startQTimer(1, d===0 ? 15 : d===1 ? 20 : 25);
 
-  // build grid with all divisors + distractors
   const nums=new Set(S1.ds);
   const wantedGrid=d===2 ? 12 : d===1 ? 10 : 8;
-
-  // 1 ~ S1.tg 범위 안에서만 숫자를 뽑으므로 실제 최대 개수는 S1.tg개
   const maxGrid=Math.min(wantedGrid, S1.tg);
 
-  // 무한 루프 방지용 안전장치
   let safety=0;
   while(nums.size<maxGrid && safety<500){
     const r=1+Math.floor(Math.random()*S1.tg);
@@ -674,22 +745,17 @@ function nx1(){
     const b=document.createElement('button');
     b.className='gb';
     b.textContent=n;
-
     b.onclick=()=>{
-      if(!S1.ok) return;
+      if(!S1.ok)return;
       const e=S1.ds[S1.ni];
-
       if(n===e){
         b.classList.add('ok');
         S1.ni++;
-
         const sp=S1.ni===S1.ds.length ? getSpeedBonus() : 0;
         S1.sc+=10+sp;
         if(sp>0) showSpeedBonus(sp);
-
         $('v1sc').textContent=S1.sc;
         $('f1').textContent='찾은 약수: '+S1.ni+' / '+S1.ds.length;
-
         if(S1.ni>=S1.ds.length){
           S1.sc+=20;
           $('v1sc').textContent=S1.sc;
@@ -710,57 +776,122 @@ function nx1(){
         setTimeout(()=>b.classList.remove('no'),500);
       }
     };
-
     g.appendChild(b);
   });
 }
 
-// ═══════ S2: Non-Multiple ═══════
 let S2={sc:0,rn:0,mx:10,dv:0,opts:[],nons:[],sel:new Set(),ok:1};
 function st2(){S2={sc:0,rn:0,mx:10,dv:0,opts:[],nons:[],sel:new Set(),ok:1};tL=tT=90;$('v2tm').textContent=90;$('v2sc').textContent=0;uBar('b2');nx2();sTmr('v2tm','b2',()=>showEnd(2,S2.sc,eM(S2.sc,150,80,['배수 구별 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
 function nx2(){
-  S2.rn++;S2.sel=new Set();S2.ok=1;if(S2.rn>S2.mx){clearInterval(tmr);stopQTimer();showEnd(2,S2.sc,eM(S2.sc,150,80,['배수 구별 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  S2.rn++;S2.sel=new Set();S2.ok=1;
+  if(S2.rn>S2.mx){clearInterval(tmr);stopQTimer();showEnd(2,S2.sc,eM(S2.sc,150,80,['배수 구별 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
   $('v2rn').textContent=S2.rn+'/'+S2.mx;$('h2').classList.remove('show');$('sb2').disabled=1;
-  const d=dfs[1],dp=[[2,3,4,5],[3,4,5,6,7],[6,7,8,9]];S2.dv=pk(dp[d]);$('n2').textContent=S2.dv;
+  const d=dfs[1],dp=[[2,3,4,5],[3,4,5,6,7],[6,7,8,9]];
+  S2.dv=pk(dp[d]);$('n2').textContent=S2.dv;
   startQTimer(2,20);
-  const nM=d===2?3:4,nN=d===2?3:2;const os=new Set(),ns=new Set();
-  while(os.size<nM){const m=S2.dv*(1+Math.floor(Math.random()*(d===0?10:d===1?18:28)));if(m>0&&m<=999)os.add(m)}
-  while(ns.size<nN){const r=1+Math.floor(Math.random()*(d===0?50:d===1?100:200));if(r%S2.dv!==0&&!os.has(r)&&!ns.has(r)){ns.add(r);os.add(r)}}
-  S2.opts=sh([...os]);S2.nons=[...ns];
+
+  const nM=d===2?3:4,nN=d===2?3:2;
+  const multiples=new Set(), nonMultiples=new Set();
+
+  let safety=0;
+  while(multiples.size<nM && safety<500){
+    const m=S2.dv*(1+Math.floor(Math.random()*(d===0?10:d===1?18:28)));
+    if(m>0&&m<=999)multiples.add(m);
+    safety++;
+  }
+
+  safety=0;
+  while(nonMultiples.size<nN && safety<1000){
+    const r=1+Math.floor(Math.random()*(d===0?50:d===1?100:200));
+    if(r%S2.dv!==0&&!multiples.has(r)&&!nonMultiples.has(r)) nonMultiples.add(r);
+    safety++;
+  }
+
+  S2.nons=[...nonMultiples];
+  S2.opts=sh([...multiples, ...nonMultiples]);
+
   const g=$('g2');g.innerHTML='';
-  S2.opts.forEach(n=>{const b=document.createElement('button');b.className='gb';b.dataset.v=n;b.textContent=n;
-  b.onclick=()=>{if(!S2.ok)return;if(S2.sel.has(n)){S2.sel.delete(n);b.classList.remove('sel')}else{S2.sel.add(n);b.classList.add('sel')}$('sb2').disabled=!S2.sel.size};g.appendChild(b)})}
-function sub2(){if(!S2.ok)return;S2.ok=0;stopQTimer();
+  S2.opts.forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.dataset.v=n;
+    b.textContent=n;
+    b.onclick=()=>{
+      if(!S2.ok)return;
+      if(S2.sel.has(n)){S2.sel.delete(n);b.classList.remove('sel')}
+      else{S2.sel.add(n);b.classList.add('sel')}
+      $('sb2').disabled=!S2.sel.size;
+    };
+    g.appendChild(b);
+  });
+}
+function sub2(){
+  if(!S2.ok)return;S2.ok=0;stopQTimer();
   const cs=new Set(S2.nons);let ok=1;
   if(S2.sel.size!==cs.size)ok=0;else for(const v of S2.sel)if(!cs.has(v)){ok=0;break}
   document.querySelectorAll('#g2 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S2.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S2.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S2.sel.has(v))b.classList.add('no')});
-  if(ok){const sp=getSpeedBonus();S2.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}else{toast('틀렸어요!',0);$('h2t').textContent=S2.dv+'의 배수: '+S2.opts.filter(n=>n%S2.dv===0).sort((a,b)=>a-b).join(', ')+' / 아닌 것: '+S2.nons.sort((a,b)=>a-b).join(', ');$('h2').classList.add('show')}
-  $('v2sc').textContent=S2.sc;setTimeout(nx2,ok?900:2e3)}
+  if(ok){const sp=getSpeedBonus();S2.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
+  else{toast('틀렸어요!',0);$('h2t').textContent=S2.dv+'의 배수: '+S2.opts.filter(n=>n%S2.dv===0).sort((a,b)=>a-b).join(', ')+' / 아닌 것: '+S2.nons.sort((a,b)=>a-b).join(', ');$('h2').classList.add('show')}
+  $('v2sc').textContent=S2.sc;setTimeout(nx2,ok?900:2000);
+}
 
-// ═══════ S3: Divisibility Quiz ═══════
 let S3={sc:0,st:0,bs:0,n:0,dv:0,im:0,ok:1};
 const s3ds=[3,4,5,6,8,9];
-const hF={3:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%3===0?'3의 배수 ✓':'아님 ✗'}`},4:n=>{const l=n%100;return`끝 두 자리: ${l} → ${l%4===0?'4의 배수 ✓':'아님 ✗'}`},5:n=>{const l=n%10;return`끝자리: ${l} → ${l===0||l===5?'5의 배수 ✓':'아님 ✗'}`},6:n=>{const e=n%2===0,s=dS(n),d=s%3===0;return`짝수? ${e?'예':'아니오'}, 자릿수합(${s}) 3의배수? ${d?'예':'아니오'} → ${e&&d?'6의 배수 ✓':'아님 ✗'}`},8:n=>{const l=n%1000;return`끝 세 자리: ${l} → ${l%8===0?'8의 배수 ✓':'아님 ✗'}`},9:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%9===0?'9의 배수 ✓':'아님 ✗'}`}};
+const hF={
+  3:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%3===0?'3의 배수 ✓':'아님 ✗'}`},
+  4:n=>{const l=n%100;return`끝 두 자리: ${l} → ${l%4===0?'4의 배수 ✓':'아님 ✗'}`},
+  5:n=>{const l=n%10;return`끝자리: ${l} → ${(l===0||l===5)?'5의 배수 ✓':'아님 ✗'}`},
+  6:n=>{const e=n%2===0,s=dS(n),d=s%3===0;return`짝수? ${e?'예':'아니오'}, 자릿수합(${s}) 3의배수? ${d?'예':'아니오'} → ${e&&d?'6의 배수 ✓':'아님 ✗'}`},
+  8:n=>{const l=n%1000;return`끝 세 자리: ${l} → ${l%8===0?'8의 배수 ✓':'아님 ✗'}`},
+  9:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%9===0?'9의 배수 ✓':'아님 ✗'}`}
+};
 function st3(){S3={sc:0,st:0,bs:0,n:0,dv:0,im:0,ok:1};tL=tT=60;$('v3tm').textContent=60;$('v3sc').textContent=0;$('v3st').textContent=0;uBar('b3');nx3();sTmr('v3tm','b3',()=>showEnd(3,S3.sc,eM(S3.sc,200,100,['판별 달인! 🏆','고수! 🔥','더 연습해봐요! 📖'])))}
-function nx3(){S3.ok=1;$('h3').classList.remove('show');$('q3y').className='qb';$('q3n').className='qb';
-  const d=dfs[2],dv=pk(s3ds);let mn,mx;if(d===0){mn=10;mx=200}else if(d===1){mn=100;mx=5000}else{mn=1000;mx=99999}
-  const sb=Math.random()<.5;let n;
-  if(sb){const lo=Math.ceil(mn/dv),hi=Math.floor(mx/dv);n=(lo+Math.floor(Math.random()*(hi-lo+1)))*dv}
-  else{do{n=mn+Math.floor(Math.random()*(mx-mn+1))}while(n%dv===0)}
+function nx3(){
+  S3.ok=1;$('h3').classList.remove('show');$('q3y').className='qb';$('q3n').className='qb';
+  const d=dfs[2],dv=pk(s3ds);let mn,mx;
+  if(d===0){mn=10;mx=200}else if(d===1){mn=100;mx=5000}else{mn=1000;mx=99999}
+  const shouldBeMultiple=Math.random()<.5;
+  let n;
+  if(shouldBeMultiple){
+    const lo=Math.ceil(mn/dv),hi=Math.floor(mx/dv);
+    n=(lo+Math.floor(Math.random()*(hi-lo+1)))*dv;
+  }else{
+    do{n=mn+Math.floor(Math.random()*(mx-mn+1))}while(n%dv===0)
+  }
   S3.n=n;S3.dv=dv;S3.im=n%dv===0;
-  $('n3').textContent=n.toLocaleString();$('n3d').textContent=dv+'의 배수일까요?';
-  const el=$('n3');el.style.animation='none';el.offsetHeight;el.style.animation='';
-  startQTimer(3,d===0?10:d===1?8:6)}
-function a3(y){if(!S3.ok)return;S3.ok=0;stopQTimer();const c=!!y===!!S3.im;const id=y?'q3y':'q3n';
-  if(c){const sp=getSpeedBonus();S3.sc+=10+S3.st*2+sp;S3.st++;if(S3.st>S3.bs)S3.bs=S3.st;$(id).classList.add('ok');if(sp)showSpeedBonus(sp);toast(pk(['정답! 🎉','완벽! ✨','맞았어요! 👏']),1)}
-  else{S3.st=0;$(id).classList.add('no');toast('오답! 정답: '+(S3.im?'배수':'아니오'),0);$('h3t').textContent=hF[S3.dv](S3.n);$('h3').classList.add('show')}
-  $('v3sc').textContent=S3.sc;$('v3st').textContent=S3.st;setTimeout(nx3,c?600:1800)}
+  $('n3').textContent=n.toLocaleString();
+  $('n3d').textContent=dv+'의 배수일까요?';
+  startQTimer(3,d===0?10:d===1?8:6);
+}
+function a3(y){
+  if(!S3.ok)return;S3.ok=0;stopQTimer();
+  const c=!!y===!!S3.im;
+  const id=y?'q3y':'q3n';
+  if(c){
+    const sp=getSpeedBonus();
+    S3.sc+=10+S3.st*2+sp;
+    S3.st++;
+    if(S3.st>S3.bs)S3.bs=S3.st;
+    $(id).classList.add('ok');
+    if(sp)showSpeedBonus(sp);
+    toast(pk(['정답! 🎉','완벽! ✨','맞았어요! 👏']),1);
+  }else{
+    S3.st=0;
+    $(id).classList.add('no');
+    toast('오답! 정답: '+(S3.im?'배수':'아니오'),0);
+    $('h3t').textContent=hF[S3.dv](S3.n);
+    $('h3').classList.add('show');
+  }
+  $('v3sc').textContent=S3.sc;
+  $('v3st').textContent=S3.st;
+  setTimeout(nx3,c?600:1800);
+}
 
-// ═══════ S4: Common Divisors (FIXED) ═══════
 let S4={sc:0,rn:0,mx:10,a:0,b:0,cds:[],sel:new Set(),ok:1};
 function st4(){S4={sc:0,rn:0,mx:10,a:0,b:0,cds:[],sel:new Set(),ok:1};tL=tT=90;$('v4tm').textContent=90;$('v4sc').textContent=0;uBar('b4');nx4();sTmr('v4tm','b4',()=>showEnd(4,S4.sc,eM(S4.sc,150,80,['공약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
 function nx4(){
-  S4.rn++;S4.sel=new Set();S4.ok=1;if(S4.rn>S4.mx){clearInterval(tmr);stopQTimer();showEnd(4,S4.sc,eM(S4.sc,150,80,['공약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  S4.rn++;S4.sel=new Set();S4.ok=1;
+  if(S4.rn>S4.mx){clearInterval(tmr);stopQTimer();showEnd(4,S4.sc,eM(S4.sc,150,80,['공약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
   $('v4rn').textContent=S4.rn+'/'+S4.mx;$('h4').classList.remove('show');$('sb4').disabled=1;
   const d=dfs[3];
   const ps=d===0?[[6,8],[8,12],[10,15],[12,16],[9,12],[6,15],[10,20],[12,18]]:d===1?[[18,24],[20,30],[24,36],[16,28],[21,35],[30,45],[28,42]]:[[36,48],[42,56],[48,72],[54,90],[60,84],[56,72],[45,75]];
@@ -768,60 +899,121 @@ function nx4(){
   S4.cds=commonDivisors(S4.a,S4.b);
   $('n4a').textContent=S4.a;$('n4b').textContent=S4.b;
   startQTimer(4,25);
+
   const nums=new Set(S4.cds);
   const daOnly=dvs(S4.a).filter(x=>S4.b%x!==0);
   const dbOnly=dvs(S4.b).filter(x=>S4.a%x!==0);
   daOnly.forEach(x=>nums.add(x));dbOnly.forEach(x=>nums.add(x));
-  while(nums.size<8){const r=2+Math.floor(Math.random()*Math.max(S4.a,S4.b));if(!nums.has(r)&&S4.a%r!==0&&S4.b%r!==0)nums.add(r)}
+
+  let safety=0;
+  while(nums.size<8 && safety<1000){
+    const r=2+Math.floor(Math.random()*Math.max(S4.a,S4.b));
+    if(!nums.has(r)&&S4.a%r!==0&&S4.b%r!==0)nums.add(r);
+    safety++;
+  }
+
   const g=$('g4');g.innerHTML='';
-  sh([...nums]).forEach(n=>{const b=document.createElement('button');b.className='gb';b.textContent=n;b.dataset.v=n;
-  b.onclick=()=>{if(!S4.ok)return;if(S4.sel.has(n)){S4.sel.delete(n);b.classList.remove('sel')}else{S4.sel.add(n);b.classList.add('sel')}$('sb4').disabled=!S4.sel.size};g.appendChild(b)})}
-function sub4(){if(!S4.ok)return;S4.ok=0;stopQTimer();
+  sh([...nums]).forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.textContent=n;
+    b.dataset.v=n;
+    b.onclick=()=>{
+      if(!S4.ok)return;
+      if(S4.sel.has(n)){S4.sel.delete(n);b.classList.remove('sel')}
+      else{S4.sel.add(n);b.classList.add('sel')}
+      $('sb4').disabled=!S4.sel.size;
+    };
+    g.appendChild(b);
+  });
+}
+function sub4(){
+  if(!S4.ok)return;S4.ok=0;stopQTimer();
   const cs=new Set(S4.cds);let ok=1;
   if(S4.sel.size!==cs.size)ok=0;else for(const v of S4.sel)if(!cs.has(v)){ok=0;break}
-  document.querySelectorAll('#g4 .gb').forEach(b=>{const v=+b.dataset.v;
-    if(cs.has(v)&&S4.sel.has(v))b.classList.add('ok');
-    else if(cs.has(v)&&!S4.sel.has(v))b.classList.add('no');
-    else if(!cs.has(v)&&S4.sel.has(v))b.classList.add('no')});
+  document.querySelectorAll('#g4 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S4.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S4.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S4.sel.has(v))b.classList.add('no')});
   if(ok){const sp=getSpeedBonus();S4.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
   else{toast('틀렸어요!',0);$('h4t').textContent=S4.a+'의 약수: '+dvs(S4.a).join(', ')+'\n'+S4.b+'의 약수: '+dvs(S4.b).join(', ')+'\n공약수: '+S4.cds.join(', ');$('h4').classList.add('show')}
-  $('v4sc').textContent=S4.sc;setTimeout(nx4,ok?900:2200)}
+  $('v4sc').textContent=S4.sc;setTimeout(nx4,ok?900:2200);
+}
 
-// ═══════ S5: GCD ═══════
 let S5={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};
 function st5(){S5={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};tL=tT=90;$('v5tm').textContent=90;$('v5sc').textContent=0;$('v5st').textContent=0;uBar('b5');nx5();sTmr('v5tm','b5',()=>showEnd(5,S5.sc,eM(S5.sc,150,80,['최대공약수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
-function nx5(){S5.rn++;S5.ok=1;if(S5.rn>S5.mx){clearInterval(tmr);stopQTimer();showEnd(5,S5.sc,eM(S5.sc,150,80,['최대공약수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+function nx5(){
+  S5.rn++;S5.ok=1;
+  if(S5.rn>S5.mx){clearInterval(tmr);stopQTimer();showEnd(5,S5.sc,eM(S5.sc,150,80,['최대공약수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
   $('e5').classList.remove('show');$('i5').value='';$('i5').className='ainp';
   const d=dfs[4];let a,b;
   if(d===0){const g=pk([2,3,4,5,6]);a=g*pk([2,3,4]);b=g*pk([2,3,5]);if(a===b)b=g*pk([3,5,7])}
   else if(d===1){const g=pk([4,6,8,9,12]);a=g*pk([2,3,5]);b=g*pk([3,4,7])}
   else{const g=pk([6,8,12,15,18]);a=g*pk([3,5,7]);b=g*pk([4,5,11])}
   S5.a=a;S5.b=b;S5.ans=GCD(a,b);$('n5a').textContent=a;$('n5b').textContent=b;
-  startQTimer(5,d===0?15:d===1?20:25);$('i5').focus()}
-function sub5(){if(!S5.ok)return;const inp=$('i5'),v=parseInt(inp.value);if(isNaN(v))return;S5.ok=0;stopQTimer();
-  if(v===S5.ans){inp.className='ainp aok';const sp=getSpeedBonus();S5.sc+=15+S5.st*3+sp;S5.st++;if(S5.st>S5.bs)S5.bs=S5.st;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
-  else{inp.className='ainp ano';S5.st=0;toast('오답! 정답: '+S5.ans,0);
-  const da=dvs(S5.a),db=dvs(S5.b),cd=commonDivisors(S5.a,S5.b);
-  $('e5').innerHTML=`<b>${S5.a}</b>의 약수: ${da.join(', ')}<br><b>${S5.b}</b>의 약수: ${db.join(', ')}<br>공약수: ${cd.join(', ')}<br>→ <b>최대공약수 = ${S5.ans}</b>`;$('e5').classList.add('show')}
-  $('v5sc').textContent=S5.sc;$('v5st').textContent=S5.st;setTimeout(nx5,v===S5.ans?900:2500)}
+  startQTimer(5,d===0?15:d===1?20:25);$('i5').focus();
+}
+function sub5(){
+  if(!S5.ok)return;
+  const inp=$('i5'),v=parseInt(inp.value);
+  if(isNaN(v))return;
+  S5.ok=0;stopQTimer();
+  if(v===S5.ans){
+    inp.className='ainp aok';
+    const sp=getSpeedBonus();
+    S5.sc+=15+S5.st*3+sp;
+    S5.st++;
+    if(S5.st>S5.bs)S5.bs=S5.st;
+    if(sp)showSpeedBonus(sp);
+    toast('정답! 🎉',1);
+  }else{
+    inp.className='ainp ano';
+    S5.st=0;
+    toast('오답! 정답: '+S5.ans,0);
+    const da=dvs(S5.a),db=dvs(S5.b),cd=commonDivisors(S5.a,S5.b);
+    $('e5').innerHTML=`<b>${S5.a}</b>의 약수: ${da.join(', ')}<br><b>${S5.b}</b>의 약수: ${db.join(', ')}<br>공약수: ${cd.join(', ')}<br>→ <b>최대공약수 = ${S5.ans}</b>`;
+    $('e5').classList.add('show');
+  }
+  $('v5sc').textContent=S5.sc;$('v5st').textContent=S5.st;
+  setTimeout(nx5,v===S5.ans?900:2500);
+}
 
-// ═══════ S6: LCM ═══════
 let S6={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};
 function st6(){S6={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};tL=tT=90;$('v6tm').textContent=90;$('v6sc').textContent=0;$('v6st').textContent=0;uBar('b6');nx6();sTmr('v6tm','b6',()=>showEnd(6,S6.sc,eM(S6.sc,150,80,['최소공배수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
-function nx6(){S6.rn++;S6.ok=1;if(S6.rn>S6.mx){clearInterval(tmr);stopQTimer();showEnd(6,S6.sc,eM(S6.sc,150,80,['최소공배수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+function nx6(){
+  S6.rn++;S6.ok=1;
+  if(S6.rn>S6.mx){clearInterval(tmr);stopQTimer();showEnd(6,S6.sc,eM(S6.sc,150,80,['최소공배수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
   $('e6').classList.remove('show');$('i6').value='';$('i6').className='ainp';
   const d=dfs[5];let a,b;
   if(d===0){a=pk([2,3,4,5,6]);b=pk([2,3,4,5,6,8,10]);if(a===b)b=a+pk([1,2,3])}
   else if(d===1){a=pk([4,6,8,9,10,12]);b=pk([6,8,9,10,12,15]);if(a===b)b=a+pk([2,3,4])}
   else{a=pk([8,12,14,15,18,20]);b=pk([10,12,16,18,21,24]);if(a===b)b=a+pk([3,5,7])}
   S6.a=a;S6.b=b;S6.ans=LCM(a,b);$('n6a').textContent=a;$('n6b').textContent=b;
-  startQTimer(6,d===0?15:d===1?20:25);$('i6').focus()}
-function sub6(){if(!S6.ok)return;const inp=$('i6'),v=parseInt(inp.value);if(isNaN(v))return;S6.ok=0;stopQTimer();
-  if(v===S6.ans){inp.className='ainp aok';const sp=getSpeedBonus();S6.sc+=15+S6.st*3+sp;S6.st++;if(S6.st>S6.bs)S6.bs=S6.st;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
-  else{inp.className='ainp ano';S6.st=0;toast('오답! 정답: '+S6.ans,0);
-  const g=GCD(S6.a,S6.b),ma=[],mb=[];for(let i=1;i<=Math.min(12,S6.ans/S6.a);i++)ma.push(S6.a*i);for(let i=1;i<=Math.min(12,S6.ans/S6.b);i++)mb.push(S6.b*i);
-  $('e6').innerHTML=`<b>${S6.a}</b>의 배수: ${ma.join(', ')}…<br><b>${S6.b}</b>의 배수: ${mb.join(', ')}…<br>→ <b>최소공배수 = ${S6.ans}</b><br><span style="font-size:.72rem;color:#9a8c60">(${S6.a}×${S6.b}÷최대공약수(${g}) = ${S6.ans})</span>`;$('e6').classList.add('show')}
-  $('v6sc').textContent=S6.sc;$('v6st').textContent=S6.st;setTimeout(nx6,v===S6.ans?900:2500)}
+  startQTimer(6,d===0?15:d===1?20:25);$('i6').focus();
+}
+function sub6(){
+  if(!S6.ok)return;
+  const inp=$('i6'),v=parseInt(inp.value);
+  if(isNaN(v))return;
+  S6.ok=0;stopQTimer();
+  if(v===S6.ans){
+    inp.className='ainp aok';
+    const sp=getSpeedBonus();
+    S6.sc+=15+S6.st*3+sp;
+    S6.st++;
+    if(S6.st>S6.bs)S6.bs=S6.st;
+    if(sp)showSpeedBonus(sp);
+    toast('정답! 🎉',1);
+  }else{
+    inp.className='ainp ano';
+    S6.st=0;
+    toast('오답! 정답: '+S6.ans,0);
+    const g=GCD(S6.a,S6.b),ma=[],mb=[];
+    for(let i=1;i<=Math.min(12,S6.ans/S6.a);i++)ma.push(S6.a*i);
+    for(let i=1;i<=Math.min(12,S6.ans/S6.b);i++)mb.push(S6.b*i);
+    $('e6').innerHTML=`<b>${S6.a}</b>의 배수: ${ma.join(', ')}…<br><b>${S6.b}</b>의 배수: ${mb.join(', ')}…<br>→ <b>최소공배수 = ${S6.ans}</b><br><span style="font-size:.72rem;color:#9a8c60">(${S6.a}×${S6.b}÷최대공약수(${g}) = ${S6.ans})</span>`;
+    $('e6').classList.add('show');
+  }
+  $('v6sc').textContent=S6.sc;$('v6st').textContent=S6.st;
+  setTimeout(nx6,v===S6.ans?900:2500);
+}
 </script>
 </body>
 </html>
