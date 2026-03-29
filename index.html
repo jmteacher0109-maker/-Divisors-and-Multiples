@@ -625,24 +625,95 @@ document.addEventListener('click',e=>{
 let S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};
 function st1(){S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};tL=tT=90;$('v1tm').textContent=90;$('v1sc').textContent=0;uBar('b1');nx1();sTmr('v1tm','b1',()=>showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
 function nx1(){
-  S1.rn++;if(S1.rn>S1.mx){clearInterval(tmr);stopQTimer();showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  S1.rn++;
+  if(S1.rn>S1.mx){
+    clearInterval(tmr);
+    stopQTimer();
+    showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));
+    return;
+  }
+
   $('v1rn').textContent=S1.rn+'/'+S1.mx;
   const d=dfs[0];
-  const ps=d===0?[6,8,10,12,14,15,16,18,20]:d===1?[24,28,30,32,36,40,42,48]:d===2?[54,56,60,64,72,80,84,90,96]:[];
-  S1.tg=pk(ps);S1.ds=dvs(S1.tg);S1.ni=0;S1.ok=1;
-  $('n1').textContent=S1.tg;$('f1').textContent='찾은 약수: 0 / '+S1.ds.length;$('h1').classList.remove('show');
-  startQTimer(1, d===0?15:d===1?20:25);
+  const ps=d===0
+    ? [6,8,10,12,14,15,16,18,20]
+    : d===1
+      ? [24,28,30,32,36,40,42,48]
+      : [54,56,60,64,72,80,84,90,96];
+
+  S1.tg=pk(ps);
+  S1.ds=dvs(S1.tg);
+  S1.ni=0;
+  S1.ok=1;
+
+  $('n1').textContent=S1.tg;
+  $('f1').textContent='찾은 약수: 0 / '+S1.ds.length;
+  $('h1').classList.remove('show');
+
+  startQTimer(1, d===0 ? 15 : d===1 ? 20 : 25);
+
+  // build grid with all divisors + distractors
   const nums=new Set(S1.ds);
-  const maxGrid=d===2?12:d===1?10:8;
-  while(nums.size<maxGrid){const r=1+Math.floor(Math.random()*(S1.tg));if(r>0&&!nums.has(r)&&S1.tg%r!==0)nums.add(r)}
-  const g=$('g1');g.innerHTML='';
-  sh([...nums]).forEach(n=>{const b=document.createElement('button');b.className='gb';b.textContent=n;
-  b.onclick=()=>{if(!S1.ok)return;const e=S1.ds[S1.ni];
-  if(n===e){b.classList.add('ok');S1.ni++;const sp=S1.ni===S1.ds.length?getSpeedBonus():0;
-  S1.sc+=10+sp;if(sp>0)showSpeedBonus(sp);$('v1sc').textContent=S1.sc;$('f1').textContent='찾은 약수: '+S1.ni+' / '+S1.ds.length;
-  if(S1.ni>=S1.ds.length){S1.sc+=20;$('v1sc').textContent=S1.sc;toast('완벽! +20 보너스 🎉',1);S1.ok=0;stopQTimer();setTimeout(nx1,900)}}
-  else if(S1.tg%n===0){b.classList.add('no');toast(e+'을(를) 먼저 찾으세요!',0);setTimeout(()=>b.classList.remove('no'),500)}
-  else{b.classList.add('no');toast(n+'은(는) '+S1.tg+'의 약수가 아니에요',0);$('h1t').textContent=S1.tg+'의 약수: '+S1.ds.join(', ');$('h1').classList.add('show');setTimeout(()=>b.classList.remove('no'),500)}};g.appendChild(b)})}
+  const wantedGrid=d===2 ? 12 : d===1 ? 10 : 8;
+
+  // 1 ~ S1.tg 범위 안에서만 숫자를 뽑으므로 실제 최대 개수는 S1.tg개
+  const maxGrid=Math.min(wantedGrid, S1.tg);
+
+  // 무한 루프 방지용 안전장치
+  let safety=0;
+  while(nums.size<maxGrid && safety<500){
+    const r=1+Math.floor(Math.random()*S1.tg);
+    if(!nums.has(r) && S1.tg%r!==0) nums.add(r);
+    safety++;
+  }
+
+  const g=$('g1');
+  g.innerHTML='';
+
+  sh([...nums]).forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.textContent=n;
+
+    b.onclick=()=>{
+      if(!S1.ok) return;
+      const e=S1.ds[S1.ni];
+
+      if(n===e){
+        b.classList.add('ok');
+        S1.ni++;
+
+        const sp=S1.ni===S1.ds.length ? getSpeedBonus() : 0;
+        S1.sc+=10+sp;
+        if(sp>0) showSpeedBonus(sp);
+
+        $('v1sc').textContent=S1.sc;
+        $('f1').textContent='찾은 약수: '+S1.ni+' / '+S1.ds.length;
+
+        if(S1.ni>=S1.ds.length){
+          S1.sc+=20;
+          $('v1sc').textContent=S1.sc;
+          toast('완벽! +20 보너스 🎉',1);
+          S1.ok=0;
+          stopQTimer();
+          setTimeout(nx1,900);
+        }
+      }else if(S1.tg%n===0){
+        b.classList.add('no');
+        toast(e+'을(를) 먼저 찾으세요!',0);
+        setTimeout(()=>b.classList.remove('no'),500);
+      }else{
+        b.classList.add('no');
+        toast(n+'은(는) '+S1.tg+'의 약수가 아니에요',0);
+        $('h1t').textContent=S1.tg+'의 약수: '+S1.ds.join(', ');
+        $('h1').classList.add('show');
+        setTimeout(()=>b.classList.remove('no'),500);
+      }
+    };
+
+    g.appendChild(b);
+  });
+}
 
 // ═══════ S2: Non-Multiple ═══════
 let S2={sc:0,rn:0,mx:10,dv:0,opts:[],nons:[],sel:new Set(),ok:1};
