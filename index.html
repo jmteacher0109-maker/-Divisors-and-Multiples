@@ -262,9 +262,30 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
     <h3 id="mdl-title">난이도 선택</h3>
     <p id="mdl-desc">난이도를 선택하세요</p>
     <div class="dbtns">
-      <div class="dbtn d0" onclick="startWithDiff(0)"><div class="dico">🌱</div><div class="dtxt"><h4>쉬움</h4><p id="dd0">작은 수 위주</p></div></div>
-      <div class="dbtn d1" onclick="startWithDiff(1)"><div class="dico">🌿</div><div class="dtxt"><h4>보통</h4><p id="dd1">중간 크기 수</p></div></div>
-      <div class="dbtn d2" onclick="startWithDiff(2)"><div class="dico">🔥</div><div class="dtxt"><h4>어려움</h4><p id="dd2">큰 수 도전</p></div></div>
+      <div class="dbtn d0" onclick="startWithDiff(0)">
+        <div class="dico">🌱</div>
+        <div class="dtxt">
+          <h4>쉬움</h4>
+          <p id="dd0">작은 수 위주</p>
+          <p id="ds0" style="font-size:.66rem;color:var(--c4);font-weight:700;margin-top:4px;">현재 최고점: 0점</p>
+        </div>
+      </div>
+      <div class="dbtn d1" onclick="startWithDiff(1)">
+        <div class="dico">🌿</div>
+        <div class="dtxt">
+          <h4>보통</h4>
+          <p id="dd1">중간 크기 수</p>
+          <p id="ds1" style="font-size:.66rem;color:var(--c4);font-weight:700;margin-top:4px;">현재 최고점: 0점</p>
+        </div>
+      </div>
+      <div class="dbtn d2" onclick="startWithDiff(2)">
+        <div class="dico">🔥</div>
+        <div class="dtxt">
+          <h4>어려움</h4>
+          <p id="dd2">큰 수 도전</p>
+          <p id="ds2" style="font-size:.66rem;color:var(--c4);font-weight:700;margin-top:4px;">현재 최고점: 0점</p>
+        </div>
+      </div>
     </div>
     <span class="mcl" onclick="closeDiff()">취소</span>
   </div>
@@ -375,6 +396,20 @@ function getSpeedBonus(){
   if(ratio>.4)return 5;
   if(ratio>.2)return 2;
   return 0;
+}
+
+function applyWrongPenalty(sec=1){
+  tL=Math.max(0, tL-sec);
+  for(let i=1;i<=6;i++){
+    const tm=$('v'+i+'tm');
+    if(tm) tm.textContent=tL;
+  }
+  if(CS>=1 && CS<=6) uBar('b'+CS);
+  toast(`오답 패널티 -${sec}초`,0);
+  if(tL<=0){
+    clearInterval(tmr);
+    stopQTimer();
+  }
 }
 
 let CS=0,pendingStage=0,tmr=null,tL=60,tT=60;
@@ -640,11 +675,15 @@ const diffDescs=[
   ['쉬운 수 조합','중간 수 조합','큰 수 조합'],
   ['작은 수','중간 수','큰 수']
 ];
+
 function openDiff(n){
   pendingStage=n;
   $('mdl-title').textContent=stageNames[n]+' 난이도';
   $('mdl-desc').textContent='난이도를 선택하고 시작하세요!';
-  for(let i=0;i<3;i++)$('dd'+i).textContent=diffDescs[n-1][i];
+  for(let i=0;i<3;i++){
+    $('dd'+i).textContent=diffDescs[n-1][i];
+    $('ds'+i).textContent='현재 최고점: ' + (bestByDiff[n-1][i] || 0) + '점';
+  }
   $('mdl').classList.add('on');
 }
 function closeDiff(){$('mdl').classList.remove('on')}
@@ -748,6 +787,7 @@ function nx1(){
     b.onclick=()=>{
       if(!S1.ok)return;
       const e=S1.ds[S1.ni];
+
       if(n===e){
         b.classList.add('ok');
         S1.ni++;
@@ -766,14 +806,24 @@ function nx1(){
         }
       }else if(S1.tg%n===0){
         b.classList.add('no');
+        S1.ok=0;
+        applyWrongPenalty(1);
         toast(e+'을(를) 먼저 찾으세요!',0);
-        setTimeout(()=>b.classList.remove('no'),500);
+        setTimeout(()=>{
+          b.classList.remove('no');
+          S1.ok=1;
+        },1000);
       }else{
         b.classList.add('no');
+        S1.ok=0;
+        applyWrongPenalty(1);
         toast(n+'은(는) '+S1.tg+'의 약수가 아니에요',0);
         $('h1t').textContent=S1.tg+'의 약수: '+S1.ds.join(', ');
         $('h1').classList.add('show');
-        setTimeout(()=>b.classList.remove('no'),500);
+        setTimeout(()=>{
+          b.classList.remove('no');
+          S1.ok=1;
+        },1000);
       }
     };
     g.appendChild(b);
@@ -831,7 +881,7 @@ function sub2(){
   if(S2.sel.size!==cs.size)ok=0;else for(const v of S2.sel)if(!cs.has(v)){ok=0;break}
   document.querySelectorAll('#g2 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S2.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S2.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S2.sel.has(v))b.classList.add('no')});
   if(ok){const sp=getSpeedBonus();S2.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
-  else{toast('틀렸어요!',0);$('h2t').textContent=S2.dv+'의 배수: '+S2.opts.filter(n=>n%S2.dv===0).sort((a,b)=>a-b).join(', ')+' / 아닌 것: '+S2.nons.sort((a,b)=>a-b).join(', ');$('h2').classList.add('show')}
+  else{applyWrongPenalty(1);toast('틀렸어요!',0);$('h2t').textContent=S2.dv+'의 배수: '+S2.opts.filter(n=>n%S2.dv===0).sort((a,b)=>a-b).join(', ')+' / 아닌 것: '+S2.nons.sort((a,b)=>a-b).join(', ');$('h2').classList.add('show')}
   $('v2sc').textContent=S2.sc;setTimeout(nx2,ok?900:2000);
 }
 
@@ -877,6 +927,7 @@ function a3(y){
     toast(pk(['정답! 🎉','완벽! ✨','맞았어요! 👏']),1);
   }else{
     S3.st=0;
+    applyWrongPenalty(1);
     $(id).classList.add('no');
     toast('오답! 정답: '+(S3.im?'배수':'아니오'),0);
     $('h3t').textContent=hF[S3.dv](S3.n);
@@ -933,7 +984,7 @@ function sub4(){
   if(S4.sel.size!==cs.size)ok=0;else for(const v of S4.sel)if(!cs.has(v)){ok=0;break}
   document.querySelectorAll('#g4 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S4.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S4.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S4.sel.has(v))b.classList.add('no')});
   if(ok){const sp=getSpeedBonus();S4.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
-  else{toast('틀렸어요!',0);$('h4t').textContent=S4.a+'의 약수: '+dvs(S4.a).join(', ')+'\n'+S4.b+'의 약수: '+dvs(S4.b).join(', ')+'\n공약수: '+S4.cds.join(', ');$('h4').classList.add('show')}
+  else{applyWrongPenalty(1);toast('틀렸어요!',0);$('h4t').textContent=S4.a+'의 약수: '+dvs(S4.a).join(', ')+'\n'+S4.b+'의 약수: '+dvs(S4.b).join(', ')+'\n공약수: '+S4.cds.join(', ');$('h4').classList.add('show')}
   $('v4sc').textContent=S4.sc;setTimeout(nx4,ok?900:2200);
 }
 
@@ -966,6 +1017,7 @@ function sub5(){
   }else{
     inp.className='ainp ano';
     S5.st=0;
+    applyWrongPenalty(1);
     toast('오답! 정답: '+S5.ans,0);
     const da=dvs(S5.a),db=dvs(S5.b),cd=commonDivisors(S5.a,S5.b);
     $('e5').innerHTML=`<b>${S5.a}</b>의 약수: ${da.join(', ')}<br><b>${S5.b}</b>의 약수: ${db.join(', ')}<br>공약수: ${cd.join(', ')}<br>→ <b>최대공약수 = ${S5.ans}</b>`;
@@ -1004,6 +1056,7 @@ function sub6(){
   }else{
     inp.className='ainp ano';
     S6.st=0;
+    applyWrongPenalty(1);
     toast('오답! 정답: '+S6.ans,0);
     const g=GCD(S6.a,S6.b),ma=[],mb=[];
     for(let i=1;i<=Math.min(12,S6.ans/S6.a);i++)ma.push(S6.a*i);
