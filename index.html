@@ -27,6 +27,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .scr.on{transform:translateX(0);opacity:1;pointer-events:auto;z-index:10}
 .scr.out{transform:translateX(-20%);opacity:0}
 .si{max-width:520px;width:100%;margin:0 auto;padding:16px 16px 32px;flex:1;position:relative;z-index:1}
+
 .hero{text-align:center;padding:24px 0 14px}
 .hero h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.8rem;color:var(--c1);animation:heroIn .6s ease}
 .hero .sub{font-size:.75rem;color:var(--mt);margin-top:4px;background:var(--c1l);display:inline-block;padding:3px 12px;border-radius:20px;animation:heroIn .6s ease .1s both}
@@ -50,6 +51,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .s6 .ico{background:var(--c6l)}.s6:hover{border-color:var(--c6)}.s6 .sv{color:var(--c6)}
 .tbar2{background:linear-gradient(135deg,#fff8e8,#fff3d4);border:2px solid #f0e2b8;border-radius:14px;padding:12px 16px;margin:16px 0 6px;display:flex;align-items:center;justify-content:space-between}
 .tbar2 .tl{font-size:.8rem;font-weight:700;color:#9a8040}.tbar2 .tv{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;color:var(--goldd)}
+
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
 .modal-bg.on{display:flex;opacity:1}
 .modal{background:var(--card);border-radius:22px;padding:28px 24px;max-width:360px;width:90%;text-align:center;transform:scale(.9);transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.15)}
@@ -65,6 +67,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .dbtn .dtxt p{font-size:.68rem;color:var(--mt);margin:0}
 .dbtn.d0:hover{border-color:var(--ok)}.dbtn.d1:hover{border-color:var(--goldd)}.dbtn.d2:hover{border-color:var(--no)}
 .modal .mcl{font-size:.8rem;color:var(--mt);cursor:pointer;text-decoration:underline}
+
 .gt{display:flex;align-items:center;gap:10px;padding:10px 0 8px;position:sticky;top:0;background:var(--bg);z-index:5}
 .gbk{width:36px;height:36px;border-radius:10px;border:2px solid var(--cb);background:var(--card);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .gbk:hover{border-color:var(--mt);transform:rotate(-10deg)}
@@ -74,18 +77,22 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .gsl{font-size:.56rem;color:var(--mt);text-transform:uppercase;letter-spacing:.5px}
 .gsv{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem}
 .gsv.vsc{color:var(--goldd)}.gsv.vst{color:var(--ok)}.gsv.vtm{color:var(--no)}.gsv.vrn{color:var(--c3)}
+
 .speed-bonus{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Fredoka',sans-serif;font-weight:700;font-size:2rem;pointer-events:none;z-index:60;opacity:0;color:var(--goldd);text-shadow:0 2px 8px rgba(0,0,0,.15)}
 .speed-bonus.pop{animation:sbpop .8s ease forwards}
 @keyframes sbpop{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}30%{transform:translate(-50%,-50%) scale(1.2)}60%{opacity:1;transform:translate(-50%,-60%) scale(1)}100%{opacity:0;transform:translate(-50%,-90%) scale(.8)}}
+
 .tmbar{width:100%;height:5px;background:var(--lt);border-radius:3px;margin-bottom:12px;overflow:hidden}
 .tmf{height:100%;border-radius:3px;transition:width 1s linear}
 .tmf.tg{background:var(--ok)}.tmf.ty{background:var(--gold)}.tmf.tr{background:var(--no)}
+
 .q-timer{width:48px;height:48px;position:absolute;top:12px;right:12px}
 .q-timer svg{transform:rotate(-90deg)}
 .q-timer circle{fill:none;stroke-width:3}
 .q-timer .bg{stroke:var(--lt)}.q-timer .fg{stroke:var(--ok);transition:stroke-dashoffset .1s linear,stroke .3s}
 .q-timer .fg.warn{stroke:var(--gold)}.q-timer .fg.danger{stroke:var(--no)}
 .q-timer .qt-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;color:var(--mt)}
+
 .pc{background:var(--card);border:2px solid var(--cb);border-radius:16px;padding:18px 16px;text-align:center;margin-bottom:12px;position:relative;overflow:hidden;animation:pcIn .35s ease}
 @keyframes pcIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
@@ -96,6 +103,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 @keyframes npop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 .tn2{display:flex;gap:10px;justify-content:center;align-items:baseline;margin-bottom:4px}
 .tn2 .tn{font-family:'Fredoka',sans-serif;font-weight:700;font-size:2rem;line-height:1}.tn2 .ts{font-size:1.2rem;color:var(--mt)}
+
 .ng{display:grid;gap:7px;margin-bottom:12px}.ng.g4{grid-template-columns:repeat(4,1fr)}.ng.g3{grid-template-columns:repeat(3,1fr)}
 .gb{padding:13px 4px;border:2px solid var(--cb);border-radius:12px;background:var(--card);cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.05rem;color:var(--tx);transition:all .15s;position:relative;overflow:hidden}
 .gb:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
@@ -105,29 +113,36 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .gb.sel{border-color:var(--c4);background:var(--c4l)}
 @keyframes gpop{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
 @keyframes gwg{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+
 .gb .ripple{position:absolute;border-radius:50%;background:rgba(0,0,0,.06);transform:scale(0);animation:rip .5s ease}
 @keyframes rip{to{transform:scale(3);opacity:0}}
+
 .qbtns{display:flex;gap:8px;margin-bottom:12px}
 .qb{flex:1;padding:15px;border:2px solid var(--cb);border-radius:13px;background:var(--card);font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .15s;color:var(--tx)}
 .qb:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
 .qb.ok{background:var(--okl);border-color:var(--ok);color:var(--ok)}
 .qb.no{background:var(--nol);border-color:var(--no);color:var(--no)}
+
 .air{display:flex;gap:8px;align-items:center;justify-content:center;margin-bottom:12px}
 .ainp{width:130px;padding:12px;border:2px solid var(--cb);border-radius:12px;font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;text-align:center;outline:none;background:var(--card);color:var(--tx);transition:border-color .2s}
 .ainp:focus{border-color:var(--c4)}.ainp.aok{border-color:var(--ok);background:var(--okl);color:var(--ok)}.ainp.ano{border-color:var(--no);background:var(--nol);color:var(--no)}
 .btn{padding:12px 22px;border:none;border-radius:12px;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;transition:all .15s}
 .btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
 .btn-b{background:var(--c4);color:#fff}.btn-g{background:var(--c2);color:#fff}
+
 .hbox{background:var(--c3l);border:2px solid rgba(155,93,229,.12);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:.76rem;line-height:1.7;color:#6b4d8a;display:none;white-space:pre-line}
 .hbox.show{display:block;animation:fu .3s ease}
 .hbox .ht{font-weight:700;font-size:.64rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;color:var(--c3)}
 .ebox{background:#fffdf5;border:2px solid #f0e6c8;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:.76rem;line-height:1.8;color:#7a6b40;display:none}
 .ebox.show{display:block;animation:fu .3s ease}.ebox b{color:#5a4e2a}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%) translateY(-100px);padding:9px 22px;border-radius:11px;font-weight:700;font-size:.85rem;z-index:999;transition:transform .3s;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.12)}
 .toast.show{transform:translateX(-50%) translateY(0)}.toast.tok{background:var(--ok);color:#fff}.toast.tno{background:var(--no);color:#fff}
+
 .confetti{position:fixed;top:-10px;width:10px;height:10px;border-radius:2px;z-index:200;pointer-events:none;animation:confFall 1.5s ease forwards}
 @keyframes confFall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+
 .endov{position:fixed;inset:0;background:rgba(250,245,238,.97);z-index:100;display:none;align-items:center;justify-content:center}
 .endov.show{display:flex;animation:fu .35s ease}
 .eb{text-align:center;padding:30px 20px;max-width:360px;width:90%}
@@ -140,6 +155,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .bs:hover{border-color:var(--mt)}
 .new-best{color:var(--no);font-size:.75rem;font-weight:700;animation:nblink 1s ease infinite}
 @keyframes nblink{0%,100%{opacity:1}50%{opacity:.4}}
+
 .topbar{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-bottom:14px}
 .authcard,.rankcard{background:var(--card);border:2px solid var(--cb);border-radius:18px;padding:14px}
 .authcard{flex:1 1 220px}
@@ -170,6 +186,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx)}
 .rank-tab.on{background:var(--c4);color:#fff}
 .rank-mode-title{margin-top:8px;font-size:.72rem;font-weight:800;color:var(--mt)}
 .hidden{display:none!important}
+
 @media(max-width:420px){
   .pc .pb{font-size:2rem}
   .tn2 .tn{font-size:1.7rem}
@@ -380,6 +397,7 @@ function getSpeedBonus(){
   if(ratio>.2)return 2;
   return 0;
 }
+
 function applyWrongPenalty(sec=1){
   tL=Math.max(0, tL-sec);
   for(let i=1;i<=6;i++){
@@ -395,62 +413,54 @@ function applyWrongPenalty(sec=1){
 }
 
 let CS=0,pendingStage=0,tmr=null,tL=60,tT=60;
-let bestByDiff=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]];
+let bestByDiff=[
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0]
+];
 let dfs=[0,0,0,0,0,0];
 let firebaseReady=false, auth=null, db=null, currentUser=null, leaderboardCache=[];
 let currentRankMode='total';
 
 const firebaseConfig={
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBcwmpg1h7r1qmK-aSGw4iZ8vwDDH0DMwI",
+  authDomain: "ranking2-3b05c.firebaseapp.com",
+  projectId: "ranking2-3b05c",
+  storageBucket: "ranking2-3b05c.firebasestorage.app",
+  messagingSenderId: "629334952678",
+  appId: "1:629334952678:web:06f17391dcdb9416e24927"
 };
 
-function getScoreStorageKey(uid=null){
-  const id = uid || currentUser?.uid || null;
-  return id ? `ym8_bestByDiff_${id}` : 'ym8_guest_bestByDiff';
-}
-function resetBestByDiff(){
-  bestByDiff=[[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]];
-}
-function loadBestByDiffForCurrentUser(){
-  let loaded=null;
-  try{
-    const key=getScoreStorageKey();
-    const s=localStorage.getItem(key);
-    if(s){
-      const parsed=JSON.parse(s);
-      if(Array.isArray(parsed) && parsed.length===6){
-        loaded=parsed.map(row=>{
-          const safe=Array.isArray(row)?row:[0,0,0];
-          return [Number(safe[0])||0,Number(safe[1])||0,Number(safe[2])||0];
-        });
+try{
+  const s=localStorage.getItem('ym8_bestByDiff');
+  if(s){
+    const parsed=JSON.parse(s);
+    if(Array.isArray(parsed) && parsed.length===6){
+      bestByDiff=parsed.map(row=>{
+        const safe=Array.isArray(row)?row:[0,0,0];
+        return [Number(safe[0])||0, Number(safe[1])||0, Number(safe[2])||0];
+      });
+    }
+  }else{
+    const old=localStorage.getItem('ym8');
+    if(old){
+      const oldParsed=JSON.parse(old);
+      if(Array.isArray(oldParsed) && oldParsed.length===6){
+        bestByDiff=oldParsed.map(v=>[Number(v)||0,0,0]);
       }
     }
-  }catch(e){
-    console.error(e);
   }
-  if(!loaded) resetBestByDiff();
-  else bestByDiff=loaded;
-  updHome();
-}
-function saveBestByDiffForCurrentUser(){
-  try{
-    localStorage.setItem(getScoreStorageKey(), JSON.stringify(bestByDiff));
-  }catch(e){
-    console.error(e);
-  }
-}
-
-loadBestByDiffForCurrentUser();
+}catch(e){}
   updHome();
 initFirebase();
 setTimeout(()=>switchRankMode('total'),0);
 
-function save(){ saveBestByDiffForCurrentUser(); }
+function save(){
+  try{ localStorage.setItem('ym8_bestByDiff', JSON.stringify(bestByDiff)); }catch(e){}
+}
 function getStageTotal(stageIndex){ return bestByDiff[stageIndex].reduce((a,b)=>a+b,0); }
 function getAllStageTotals(){ return bestByDiff.map((_,i)=>getStageTotal(i)); }
 function getGrandTotal(){ return bestByDiff.reduce((sum,row)=>sum+row.reduce((a,b)=>a+b,0),0); }
@@ -464,47 +474,21 @@ function updHome(){
   updateMyRankBox();
 }
 
-function getDisplayName(u){if(!u)return '로그인 필요';return localStorage.getItem('ym8_nickname')||u.displayName||'익명 사용자'}
+function getDisplayName(u){if(!u)return '로그인 필요';return u.displayName||localStorage.getItem('ym8_nickname')||'익명 사용자'}
 function getAvatarText(name){return (name||'?').trim().charAt(0).toUpperCase()||'?'}
 function isFirebaseConfigured(){return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_') && firebaseConfig.projectId && !firebaseConfig.projectId.includes('YOUR_')}
 
 function setAuthUI(){
   const logged=!!currentUser;
   const name=getDisplayName(currentUser);
-  $('userName').textContent=logged?name:'로그인 필요';
-  $('userAvatar').textContent=getAvatarText(logged?name:'?');
+  $('userName').textContent=name;
+  $('userAvatar').textContent=getAvatarText(name);
   $('userInfo').textContent=logged
     ? ((currentUser.email||'이메일 비공개') + ' · 총점 ' + getGrandTotal() + '점')
     : '닉네임과 점수를 저장할 수 있어요';
   $('authState').textContent = firebaseReady ? (logged ? '로그인됨' : '로그인 안 됨') : 'Firebase 연결 전';
   $('logoutBtn').classList.toggle('hidden', !logged);
   $('nickBtn').textContent = logged ? '닉네임 변경' : '닉네임 미리 입력';
-}
-
-async function pullRemoteScoreToLocal(){
-  if(!firebaseReady || !db || !currentUser) return;
-  try{
-    const snap=await db.collection('ym8_rankings').doc(currentUser.uid).get();
-    if(!snap.exists) return;
-    const data=snap.data()||{};
-    const remote=[
-      [data.stage1_easy||0, data.stage1_normal||0, data.stage1_hard||0],
-      [data.stage2_easy||0, data.stage2_normal||0, data.stage2_hard||0],
-      [data.stage3_easy||0, data.stage3_normal||0, data.stage3_hard||0],
-      [data.stage4_easy||0, data.stage4_normal||0, data.stage4_hard||0],
-      [data.stage5_easy||0, data.stage5_normal||0, data.stage5_hard||0],
-      [data.stage6_easy||0, data.stage6_normal||0, data.stage6_hard||0]
-    ];
-    for(let i=0;i<6;i++){
-      for(let j=0;j<3;j++){
-        bestByDiff[i][j]=Math.max(bestByDiff[i][j]||0, remote[i][j]||0);
-      }
-    }
-    saveBestByDiffForCurrentUser();
-    updHome();
-  }catch(e){
-    console.error(e);
-  }
 }
 
 async function initFirebase(){
@@ -518,21 +502,11 @@ async function initFirebase(){
     auth=firebase.auth();
     db=firebase.firestore();
     firebaseReady=true;
-
     auth.onAuthStateChanged(async user=>{
       currentUser=user||null;
-
-      // 계정 전환 시 해당 계정 전용 로컬 점수로 교체
-      loadBestByDiffForCurrentUser();
-
       setAuthUI();
+      if(user) await syncScoreToFirebase(false);
       loadLeaderboard(currentRankMode,true);
-
-      if(user){
-        await pullRemoteScoreToLocal();
-        await syncScoreToFirebase(false);
-        loadLeaderboard(currentRankMode,true);
-      }
     });
   }catch(e){
     console.error(e);
@@ -563,8 +537,12 @@ function loadLocalLeaderboardFallback(){
   leaderboardCache=[{
     displayName:name,
     totalScore:getGrandTotal(),
-    stage1: stageTotals[0], stage2: stageTotals[1], stage3: stageTotals[2],
-    stage4: stageTotals[3], stage5: stageTotals[4], stage6: stageTotals[5],
+    stage1: stageTotals[0],
+    stage2: stageTotals[1],
+    stage3: stageTotals[2],
+    stage4: stageTotals[3],
+    stage5: stageTotals[4],
+    stage6: stageTotals[5],
     stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
     stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
     stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
@@ -588,14 +566,7 @@ async function loginWithGoogle(){
   }
 }
 
-async function logoutUser(){
-  if(!auth) return;
-  await auth.signOut();
-  loadBestByDiffForCurrentUser();
-  setAuthUI();
-  loadLeaderboard(currentRankMode,true);
-  toast('로그아웃 되었어요.',1);
-}
+async function logoutUser(){ if(!auth) return; await auth.signOut(); toast('로그아웃 되었어요.',1); }
 
 function changeNickname(){
   const base=currentUser?.displayName||localStorage.getItem('ym8_nickname')||'';
@@ -621,8 +592,12 @@ async function syncScoreToFirebase(force=false){
     displayName: (localStorage.getItem('ym8_nickname')||currentUser.displayName||'익명 사용자').slice(0,12),
     email: currentUser.email||'',
     totalScore,
-    stage1: stageTotals[0], stage2: stageTotals[1], stage3: stageTotals[2],
-    stage4: stageTotals[3], stage5: stageTotals[4], stage6: stageTotals[5],
+    stage1: stageTotals[0],
+    stage2: stageTotals[1],
+    stage3: stageTotals[2],
+    stage4: stageTotals[3],
+    stage5: stageTotals[4],
+    stage6: stageTotals[5],
     stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
     stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
     stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
@@ -662,6 +637,7 @@ function renderLeaderboard(){
     updateMyRankBox();
     return;
   }
+
   box.innerHTML=leaderboardCache.map((row,idx)=>{
     let sub='';
     if(currentRankMode!=='total'){
@@ -670,6 +646,7 @@ function renderLeaderboard(){
     }
     return `<div class="rank-item"><div class="rank-pos">${idx+1}</div><div class="rank-name">${row.displayName||'익명 사용자'}${sub}</div><div class="rank-score">${getRankScore(row,currentRankMode)}</div></div>`;
   }).join('');
+
   updateMyRankBox();
 }
 
