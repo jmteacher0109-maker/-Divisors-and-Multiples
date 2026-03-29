@@ -401,12 +401,12 @@ let firebaseReady=false, auth=null, db=null, currentUser=null, leaderboardCache=
 let currentRankMode='total';
 
 const firebaseConfig={
- apiKey: "AIzaSyBcwmpg1h7r1qmK-aSGw4iZ8vwDDH0DMwI",
-  authDomain: "ranking2-3b05c.firebaseapp.com",
-  projectId: "ranking2-3b05c",
-  storageBucket: "ranking2-3b05c.firebasestorage.app",
-  messagingSenderId: "629334952678",
-  appId: "1:629334952678:web:06f17391dcdb9416e24927"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 function getScoreStorageKey(uid=null){
@@ -764,321 +764,332 @@ document.addEventListener('click',e=>{
   btn.appendChild(r);
   setTimeout(()=>r.remove(),600);
 });
-  updHome();
-initFirebase();
-setTimeout(()=>switchRankMode('total'),0);
-
-function save(){ saveBestByDiffForCurrentUser(); }
-function getStageTotal(stageIndex){ return bestByDiff[stageIndex].reduce((a,b)=>a+b,0); }
-function getAllStageTotals(){ return bestByDiff.map((_,i)=>getStageTotal(i)); }
-function getGrandTotal(){ return bestByDiff.reduce((sum,row)=>sum+row.reduce((a,b)=>a+b,0),0); }
-
-function updHome(){
-  for(let i=0;i<6;i++){
-    const total=getStageTotal(i);
-    $('hs'+(i+1)).textContent=total>0?total+'점':'-';
-  }
-  $('htot').textContent=getGrandTotal()+'점';
-  updateMyRankBox();
-}
-
-function getDisplayName(u){if(!u)return '로그인 필요';return localStorage.getItem('ym8_nickname')||u.displayName||'익명 사용자'}
-function getAvatarText(name){return (name||'?').trim().charAt(0).toUpperCase()||'?'}
-function isFirebaseConfigured(){return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_') && firebaseConfig.projectId && !firebaseConfig.projectId.includes('YOUR_')}
-
-function setAuthUI(){
-  const logged=!!currentUser;
-  const name=getDisplayName(currentUser);
-  $('userName').textContent=logged?name:'로그인 필요';
-  $('userAvatar').textContent=getAvatarText(logged?name:'?');
-  $('userInfo').textContent=logged
-    ? ((currentUser.email||'이메일 비공개') + ' · 총점 ' + getGrandTotal() + '점')
-    : '닉네임과 점수를 저장할 수 있어요';
-  $('authState').textContent = firebaseReady ? (logged ? '로그인됨' : '로그인 안 됨') : 'Firebase 연결 전';
-  $('logoutBtn').classList.toggle('hidden', !logged);
-  $('nickBtn').textContent = logged ? '닉네임 변경' : '닉네임 미리 입력';
-}
-
-async function pullRemoteScoreToLocal(){
-  if(!firebaseReady || !db || !currentUser) return;
-  try{
-    const snap=await db.collection('ym8_rankings').doc(currentUser.uid).get();
-    if(!snap.exists) return;
-    const data=snap.data()||{};
-    const remote=[
-      [data.stage1_easy||0, data.stage1_normal||0, data.stage1_hard||0],
-      [data.stage2_easy||0, data.stage2_normal||0, data.stage2_hard||0],
-      [data.stage3_easy||0, data.stage3_normal||0, data.stage3_hard||0],
-      [data.stage4_easy||0, data.stage4_normal||0, data.stage4_hard||0],
-      [data.stage5_easy||0, data.stage5_normal||0, data.stage5_hard||0],
-      [data.stage6_easy||0, data.stage6_normal||0, data.stage6_hard||0]
-    ];
-    for(let i=0;i<6;i++){
-      for(let j=0;j<3;j++){
-        bestByDiff[i][j]=Math.max(bestByDiff[i][j]||0, remote[i][j]||0);
-      }
-    }
-    saveBestByDiffForCurrentUser();
-    updHome();
-  }catch(e){
-    console.error(e);
-  }
-}
-
-async function initFirebase(){
-  setAuthUI();
-  if(!window.firebase || !isFirebaseConfigured()){
-    loadLocalLeaderboardFallback();
+  let S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};
+function st1(){S1={sc:0,rn:0,mx:10,tg:0,ds:[],ni:0,ok:1};tL=tT=90;$('v1tm').textContent=90;$('v1sc').textContent=0;uBar('b1');nx1();sTmr('v1tm','b1',()=>showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
+function nx1(){
+  S1.rn++;
+  if(S1.rn>S1.mx){
+    clearInterval(tmr);
+    stopQTimer();
+    showEnd(1,S1.sc,eM(S1.sc,150,80,['약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));
     return;
   }
-  try{
-    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    auth=firebase.auth();
-    db=firebase.firestore();
-    firebaseReady=true;
 
-    auth.onAuthStateChanged(async user=>{
-      currentUser=user||null;
+  $('v1rn').textContent=S1.rn+'/'+S1.mx;
+  const d=dfs[0];
+  const ps=d===0 ? [6,8,10,12,14,15,16,18,20] : d===1 ? [24,28,30,32,36,40,42,48] : [54,56,60,64,72,80,84,90,96];
+  S1.tg=pk(ps);
+  S1.ds=dvs(S1.tg);
+  S1.ni=0;
+  S1.ok=1;
 
-      // 계정 전환 시 해당 계정 전용 로컬 점수로 교체
-      loadBestByDiffForCurrentUser();
+  $('n1').textContent=S1.tg;
+  $('f1').textContent='찾은 약수: 0 / '+S1.ds.length;
+  $('h1').classList.remove('show');
 
-      setAuthUI();
-      loadLeaderboard(currentRankMode,true);
+  startQTimer(1, d===0 ? 15 : d===1 ? 20 : 25);
 
-      if(user){
-        await pullRemoteScoreToLocal();
-        await syncScoreToFirebase(false);
-        loadLeaderboard(currentRankMode,true);
+  const nums=new Set(S1.ds);
+  const wantedGrid=d===2 ? 12 : d===1 ? 10 : 8;
+  const maxGrid=Math.min(wantedGrid, S1.tg);
+
+  let safety=0;
+  while(nums.size<maxGrid && safety<500){
+    const r=1+Math.floor(Math.random()*S1.tg);
+    if(!nums.has(r) && S1.tg%r!==0) nums.add(r);
+    safety++;
+  }
+
+  const g=$('g1');
+  g.innerHTML='';
+
+  sh([...nums]).forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.textContent=n;
+    b.onclick=()=>{
+      if(!S1.ok)return;
+      const e=S1.ds[S1.ni];
+
+      if(n===e){
+        b.classList.add('ok');
+        S1.ni++;
+        const sp=S1.ni===S1.ds.length ? getSpeedBonus() : 0;
+        S1.sc+=10+sp;
+        if(sp>0) showSpeedBonus(sp);
+        $('v1sc').textContent=S1.sc;
+        $('f1').textContent='찾은 약수: '+S1.ni+' / '+S1.ds.length;
+        if(S1.ni>=S1.ds.length){
+          S1.sc+=20;
+          $('v1sc').textContent=S1.sc;
+          toast('완벽! +20 보너스 🎉',1);
+          S1.ok=0;
+          stopQTimer();
+          setTimeout(nx1,900);
+        }
+      }else if(S1.tg%n===0){
+        b.classList.add('no');
+        S1.ok=0;
+        applyWrongPenalty(1);
+        toast(e+'을(를) 먼저 찾으세요!',0);
+        setTimeout(()=>{
+          b.classList.remove('no');
+          S1.ok=1;
+        },1000);
+      }else{
+        b.classList.add('no');
+        S1.ok=0;
+        applyWrongPenalty(1);
+        toast(n+'은(는) '+S1.tg+'의 약수가 아니에요',0);
+        $('h1t').textContent=S1.tg+'의 약수: '+S1.ds.join(', ');
+        $('h1').classList.add('show');
+        setTimeout(()=>{
+          b.classList.remove('no');
+          S1.ok=1;
+        },1000);
       }
-    });
-  }catch(e){
-    console.error(e);
-    firebaseReady=false;
-    loadLocalLeaderboardFallback();
-    setAuthUI();
+    };
+    g.appendChild(b);
+  });
+}
+
+let S2={sc:0,rn:0,mx:10,dv:0,opts:[],nons:[],sel:new Set(),ok:1};
+function st2(){S2={sc:0,rn:0,mx:10,dv:0,opts:[],nons:[],sel:new Set(),ok:1};tL=tT=90;$('v2tm').textContent=90;$('v2sc').textContent=0;uBar('b2');nx2();sTmr('v2tm','b2',()=>showEnd(2,S2.sc,eM(S2.sc,150,80,['배수 구별 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
+function nx2(){
+  S2.rn++;S2.sel=new Set();S2.ok=1;
+  if(S2.rn>S2.mx){clearInterval(tmr);stopQTimer();showEnd(2,S2.sc,eM(S2.sc,150,80,['배수 구별 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  $('v2rn').textContent=S2.rn+'/'+S2.mx;$('h2').classList.remove('show');$('sb2').disabled=1;
+  const d=dfs[1],dp=[[2,3,4,5],[3,4,5,6,7],[6,7,8,9]];
+  S2.dv=pk(dp[d]);$('n2').textContent=S2.dv;
+  startQTimer(2,20);
+
+  const nM=d===2?3:4,nN=d===2?3:2;
+  const multiples=new Set(), nonMultiples=new Set();
+
+  let safety=0;
+  while(multiples.size<nM && safety<500){
+    const m=S2.dv*(1+Math.floor(Math.random()*(d===0?10:d===1?18:28)));
+    if(m>0&&m<=999)multiples.add(m);
+    safety++;
   }
-}
 
-function getRankField(mode=currentRankMode){ return mode==='total' ? 'totalScore' : 'stage'+mode; }
-function getRankModeLabel(mode=currentRankMode){ return mode==='total' ? '전체 랭킹 TOP 10' : `${mode}단계 랭킹 TOP 10`; }
-function getRankScore(row,mode=currentRankMode){
-  if(mode==='total') return row.totalScore||0;
-  return row['stage'+mode] ?? 0;
-}
-
-function switchRankMode(mode){
-  currentRankMode=mode;
-  document.querySelectorAll('.rank-tab').forEach(btn=>btn.classList.remove('on'));
-  $(mode==='total' ? 'rtotal' : 'r'+mode).classList.add('on');
-  $('rankModeTitle').textContent=getRankModeLabel(mode);
-  loadLeaderboard(mode,true);
-}
-
-function loadLocalLeaderboardFallback(){
-  const name=localStorage.getItem('ym8_nickname')||'내 기기';
-  const stageTotals=getAllStageTotals();
-  leaderboardCache=[{
-    displayName:name,
-    totalScore:getGrandTotal(),
-    stage1: stageTotals[0], stage2: stageTotals[1], stage3: stageTotals[2],
-    stage4: stageTotals[3], stage5: stageTotals[4], stage6: stageTotals[5],
-    stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
-    stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
-    stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
-    stage4_easy: bestByDiff[3][0], stage4_normal: bestByDiff[3][1], stage4_hard: bestByDiff[3][2],
-    stage5_easy: bestByDiff[4][0], stage5_normal: bestByDiff[4][1], stage5_hard: bestByDiff[4][2],
-    stage6_easy: bestByDiff[5][0], stage6_normal: bestByDiff[5][1], stage6_hard: bestByDiff[5][2]
-  }].filter(x=>x.totalScore>0 || getRankScore(x,currentRankMode)>0);
-  renderLeaderboard();
-}
-
-async function loginWithGoogle(){
-  if(!firebaseReady||!auth){ toast('firebaseConfig를 먼저 입력하세요.',0); return; }
-  try{
-    const provider=new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({prompt:'select_account'});
-    await auth.signInWithPopup(provider);
-    toast('로그인 성공!',1);
-  }catch(e){
-    console.error(e);
-    toast('로그인에 실패했어요.',0);
+  safety=0;
+  while(nonMultiples.size<nN && safety<1000){
+    const r=1+Math.floor(Math.random()*(d===0?50:d===1?100:200));
+    if(r%S2.dv!==0&&!multiples.has(r)&&!nonMultiples.has(r)) nonMultiples.add(r);
+    safety++;
   }
+
+  S2.nons=[...nonMultiples];
+  S2.opts=sh([...multiples, ...nonMultiples]);
+
+  const g=$('g2');g.innerHTML='';
+  S2.opts.forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.dataset.v=n;
+    b.textContent=n;
+    b.onclick=()=>{
+      if(!S2.ok)return;
+      if(S2.sel.has(n)){S2.sel.delete(n);b.classList.remove('sel')}
+      else{S2.sel.add(n);b.classList.add('sel')}
+      $('sb2').disabled=!S2.sel.size;
+    };
+    g.appendChild(b);
+  });
+}
+function sub2(){
+  if(!S2.ok)return;S2.ok=0;stopQTimer();
+  const cs=new Set(S2.nons);let ok=1;
+  if(S2.sel.size!==cs.size)ok=0;else for(const v of S2.sel)if(!cs.has(v)){ok=0;break}
+  document.querySelectorAll('#g2 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S2.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S2.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S2.sel.has(v))b.classList.add('no')});
+  if(ok){const sp=getSpeedBonus();S2.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
+  else{applyWrongPenalty(1);toast('틀렸어요!',0);$('h2t').textContent=S2.dv+'의 배수: '+S2.opts.filter(n=>n%S2.dv===0).sort((a,b)=>a-b).join(', ')+' / 아닌 것: '+S2.nons.sort((a,b)=>a-b).join(', ');$('h2').classList.add('show')}
+  $('v2sc').textContent=S2.sc;setTimeout(nx2,ok?900:2000);
 }
 
-async function logoutUser(){
-  if(!auth) return;
-  await auth.signOut();
-  loadBestByDiffForCurrentUser();
-  setAuthUI();
-  loadLeaderboard(currentRankMode,true);
-  toast('로그아웃 되었어요.',1);
-}
-
-function changeNickname(){
-  const base=currentUser?.displayName||localStorage.getItem('ym8_nickname')||'';
-  const next=prompt('표시할 닉네임을 입력하세요.', base);
-  if(next===null) return;
-  const nickname=next.trim().slice(0,12);
-  if(!nickname){toast('닉네임을 1글자 이상 입력하세요.',0);return;}
-  localStorage.setItem('ym8_nickname', nickname);
-  if(currentUser && firebaseReady){syncScoreToFirebase(true)}
-  setAuthUI();
-  renderLeaderboard();
-  toast('닉네임이 저장되었어요.',1);
-}
-
-async function syncScoreToFirebase(force=false){
-  if(!firebaseReady || !db || !currentUser) return;
-  const totalScore=getGrandTotal();
-  const stageTotals=getAllStageTotals();
-  if(!force && totalScore<=0) return;
-
-  const payload={
-    uid: currentUser.uid,
-    displayName: (localStorage.getItem('ym8_nickname')||currentUser.displayName||'익명 사용자').slice(0,12),
-    email: currentUser.email||'',
-    totalScore,
-    stage1: stageTotals[0], stage2: stageTotals[1], stage3: stageTotals[2],
-    stage4: stageTotals[3], stage5: stageTotals[4], stage6: stageTotals[5],
-    stage1_easy: bestByDiff[0][0], stage1_normal: bestByDiff[0][1], stage1_hard: bestByDiff[0][2],
-    stage2_easy: bestByDiff[1][0], stage2_normal: bestByDiff[1][1], stage2_hard: bestByDiff[1][2],
-    stage3_easy: bestByDiff[2][0], stage3_normal: bestByDiff[2][1], stage3_hard: bestByDiff[2][2],
-    stage4_easy: bestByDiff[3][0], stage4_normal: bestByDiff[3][1], stage4_hard: bestByDiff[3][2],
-    stage5_easy: bestByDiff[4][0], stage5_normal: bestByDiff[4][1], stage5_hard: bestByDiff[4][2],
-    stage6_easy: bestByDiff[5][0], stage6_normal: bestByDiff[5][1], stage6_hard: bestByDiff[5][2],
-    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-  };
-
-  try{
-    await db.collection('ym8_rankings').doc(currentUser.uid).set(payload,{merge:true});
-    loadLeaderboard(currentRankMode,true);
-  }catch(e){
-    console.error(e);
-  }
-}
-
-async function loadLeaderboard(mode=currentRankMode, force=false){
-  currentRankMode=mode;
-  $('rankModeTitle').textContent=getRankModeLabel(mode);
-  if(!firebaseReady || !db){ loadLocalLeaderboardFallback(); return; }
-  try{
-    const field=getRankField(mode);
-    const snap=await db.collection('ym8_rankings').orderBy(field,'desc').limit(10).get();
-    leaderboardCache=snap.docs.map(doc=>({id:doc.id,...doc.data()})).filter(row=>getRankScore(row,mode)>0);
-    renderLeaderboard();
-  }catch(e){
-    console.error(e);
-    if(force) toast('랭킹을 불러오지 못했어요.',0);
-  }
-}
-
-function renderLeaderboard(){
-  const box=$('rankList');
-  if(!leaderboardCache.length){
-    box.innerHTML='<div class="rank-empty">아직 등록된 점수가 없어요.</div>';
-    updateMyRankBox();
-    return;
-  }
-  box.innerHTML=leaderboardCache.map((row,idx)=>{
-    let sub='';
-    if(currentRankMode!=='total'){
-      const stage=currentRankMode;
-      sub=`<div style="font-size:.62rem;color:var(--mt);margin-top:2px;">쉬 ${row[`stage${stage}_easy`]||0} / 보 ${row[`stage${stage}_normal`]||0} / 어 ${row[`stage${stage}_hard`]||0}</div>`;
-    }
-    return `<div class="rank-item"><div class="rank-pos">${idx+1}</div><div class="rank-name">${row.displayName||'익명 사용자'}${sub}</div><div class="rank-score">${getRankScore(row,currentRankMode)}</div></div>`;
-  }).join('');
-  updateMyRankBox();
-}
-
-function updateMyRankBox(){
-  const name=currentUser?getDisplayName(currentUser):(localStorage.getItem('ym8_nickname')||'내 기기');
-  const myScore=currentRankMode==='total' ? getGrandTotal() : getStageTotal(currentRankMode-1);
-  const idx=leaderboardCache.findIndex(x=>(currentUser && x.uid===currentUser.uid) || (!currentUser && (x.displayName===name && getRankScore(x,currentRankMode)===myScore)));
-  const modeLabel=currentRankMode==='total' ? '전체' : `${currentRankMode}단계`;
-
-  if(currentRankMode==='total'){
-    $('myRankBox').textContent = idx>=0 ? `내 ${modeLabel} 랭킹: ${idx+1}위 · ${name} · ${myScore}점` : `내 ${modeLabel} 점수: ${name} · ${myScore}점`;
+let S3={sc:0,st:0,bs:0,n:0,dv:0,im:0,ok:1};
+const s3ds=[3,4,5,6,8,9];
+const hF={
+  3:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%3===0?'3의 배수 ✓':'아님 ✗'}`},
+  4:n=>{const l=n%100;return`끝 두 자리: ${l} → ${l%4===0?'4의 배수 ✓':'아님 ✗'}`},
+  5:n=>{const l=n%10;return`끝자리: ${l} → ${(l===0||l===5)?'5의 배수 ✓':'아님 ✗'}`},
+  6:n=>{const e=n%2===0,s=dS(n),d=s%3===0;return`짝수? ${e?'예':'아니오'}, 자릿수합(${s}) 3의배수? ${d?'예':'아니오'} → ${e&&d?'6의 배수 ✓':'아님 ✗'}`},
+  8:n=>{const l=n%1000;return`끝 세 자리: ${l} → ${l%8===0?'8의 배수 ✓':'아님 ✗'}`},
+  9:n=>{const s=dS(n);return`자릿수합: ${dSt(n)} = ${s} → ${s%9===0?'9의 배수 ✓':'아님 ✗'}`}
+};
+function st3(){S3={sc:0,st:0,bs:0,n:0,dv:0,im:0,ok:1};tL=tT=60;$('v3tm').textContent=60;$('v3sc').textContent=0;$('v3st').textContent=0;uBar('b3');nx3();sTmr('v3tm','b3',()=>showEnd(3,S3.sc,eM(S3.sc,200,100,['판별 달인! 🏆','고수! 🔥','더 연습해봐요! 📖'])))}
+function nx3(){
+  S3.ok=1;$('h3').classList.remove('show');$('q3y').className='qb';$('q3n').className='qb';
+  const d=dfs[2],dv=pk(s3ds);let mn,mx;
+  if(d===0){mn=10;mx=200}else if(d===1){mn=100;mx=5000}else{mn=1000;mx=99999}
+  const shouldBeMultiple=Math.random()<.5;
+  let n;
+  if(shouldBeMultiple){
+    const lo=Math.ceil(mn/dv),hi=Math.floor(mx/dv);
+    n=(lo+Math.floor(Math.random()*(hi-lo+1)))*dv;
   }else{
-    const d=bestByDiff[currentRankMode-1];
-    $('myRankBox').textContent = idx>=0
-      ? `내 ${modeLabel} 랭킹: ${idx+1}위 · ${name} · ${myScore}점 (쉬 ${d[0]} / 보 ${d[1]} / 어 ${d[2]})`
-      : `내 ${modeLabel} 점수: ${name} · ${myScore}점 (쉬 ${d[0]} / 보 ${d[1]} / 어 ${d[2]})`;
+    do{n=mn+Math.floor(Math.random()*(mx-mn+1))}while(n%dv===0)
   }
+  S3.n=n;S3.dv=dv;S3.im=n%dv===0;
+  $('n3').textContent=n.toLocaleString();
+  $('n3d').textContent=dv+'의 배수일까요?';
+  startQTimer(3,d===0?10:d===1?8:6);
 }
-
-const stageNames=['','약수 찾기','배수 아닌 것','배수 판별','공약수 찾기','최대공약수','최소공배수'];
-const diffDescs=[
-  ['10~20 범위','20~50 범위','50~96 범위'],
-  ['2~5의 배수','3~7의 배수','6~9의 배수'],
-  ['10~200','100~5,000','1,000~99,999'],
-  ['작은 두 수','중간 두 수','큰 두 수'],
-  ['쉬운 수 조합','중간 수 조합','큰 수 조합'],
-  ['작은 수','중간 수','큰 수']
-];
-
-function openDiff(n){
-  pendingStage=n;
-  $('mdl-title').textContent=stageNames[n]+' 난이도';
-  $('mdl-desc').textContent='난이도를 선택하고 시작하세요!';
-  for(let i=0;i<3;i++){
-    $('dd'+i).textContent=diffDescs[n-1][i];
-    $('ds'+i).textContent='현재 최고점: ' + (bestByDiff[n-1][i] || 0) + '점';
+function a3(y){
+  if(!S3.ok)return;S3.ok=0;stopQTimer();
+  const c=!!y===!!S3.im;
+  const id=y?'q3y':'q3n';
+  if(c){
+    const sp=getSpeedBonus();
+    S3.sc+=10+S3.st*2+sp;
+    S3.st++;
+    if(S3.st>S3.bs)S3.bs=S3.st;
+    $(id).classList.add('ok');
+    if(sp)showSpeedBonus(sp);
+    toast(pk(['정답! 🎉','완벽! ✨','맞았어요! 👏']),1);
+  }else{
+    S3.st=0;
+    applyWrongPenalty(1);
+    $(id).classList.add('no');
+    toast('오답! 정답: '+(S3.im?'배수':'아니오'),0);
+    $('h3t').textContent=hF[S3.dv](S3.n);
+    $('h3').classList.add('show');
   }
-  $('mdl').classList.add('on');
+  $('v3sc').textContent=S3.sc;
+  $('v3st').textContent=S3.st;
+  setTimeout(nx3,c?600:1800);
 }
-function closeDiff(){$('mdl').classList.remove('on')}
-function startWithDiff(d){ closeDiff(); dfs[pendingStage-1]=d; goStage(pendingStage); }
 
-function goStage(n){
-  CS=n;
-  $('home').classList.remove('on');
-  $('home').classList.add('out');
-  $('scr'+n).classList.add('on');
-  setTimeout(()=>$('home').classList.remove('out'),400);
-  [,st1,st2,st3,st4,st5,st6][n]();
-}
-function back(){clearInterval(tmr);stopQTimer();$('scr'+CS).classList.remove('on');$('home').classList.add('on');updHome();CS=0}
+let S4={sc:0,rn:0,mx:10,a:0,b:0,cds:[],sel:new Set(),ok:1};
+function st4(){S4={sc:0,rn:0,mx:10,a:0,b:0,cds:[],sel:new Set(),ok:1};tL=tT=90;$('v4tm').textContent=90;$('v4sc').textContent=0;uBar('b4');nx4();sTmr('v4tm','b4',()=>showEnd(4,S4.sc,eM(S4.sc,150,80,['공약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
+function nx4(){
+  S4.rn++;S4.sel=new Set();S4.ok=1;
+  if(S4.rn>S4.mx){clearInterval(tmr);stopQTimer();showEnd(4,S4.sc,eM(S4.sc,150,80,['공약수 마스터! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  $('v4rn').textContent=S4.rn+'/'+S4.mx;$('h4').classList.remove('show');$('sb4').disabled=1;
+  const d=dfs[3];
+  const ps=d===0?[[6,8],[8,12],[10,15],[12,16],[9,12],[6,15],[10,20],[12,18]]:d===1?[[18,24],[20,30],[24,36],[16,28],[21,35],[30,45],[28,42]]:[[36,48],[42,56],[48,72],[54,90],[60,84],[56,72],[45,75]];
+  const p=pk(ps);S4.a=p[0];S4.b=p[1];
+  S4.cds=commonDivisors(S4.a,S4.b);
+  $('n4a').textContent=S4.a;$('n4b').textContent=S4.b;
+  startQTimer(4,25);
 
-async function showEnd(s,sc,msg){
-  stopQTimer();
-  const diff=dfs[s-1];
-  const oldScore=bestByDiff[s-1][diff];
-  const isNew=sc>oldScore;
+  const nums=new Set(S4.cds);
+  const daOnly=dvs(S4.a).filter(x=>S4.b%x!==0);
+  const dbOnly=dvs(S4.b).filter(x=>S4.a%x!==0);
+  daOnly.forEach(x=>nums.add(x));dbOnly.forEach(x=>nums.add(x));
 
-  if(isNew){
-    bestByDiff[s-1][diff]=sc;
-    save();
-    confetti();
-    updHome();
-    await syncScoreToFirebase(false);
+  let safety=0;
+  while(nums.size<8 && safety<1000){
+    const r=2+Math.floor(Math.random()*Math.max(S4.a,S4.b));
+    if(!nums.has(r)&&S4.a%r!==0&&S4.b%r!==0)nums.add(r);
+    safety++;
   }
 
-  const t=['🔍 약수 찾기','🚫 배수 아닌 것','⚡ 배수 판별','🎯 공약수 찾기','👑 최대공약수','🚀 최소공배수'];
-  const diffNames=['쉬움','보통','어려움'];
-  $('et').textContent=t[s-1]+' 결과';
-  $('esc').textContent=sc+'점';
-  $('em').textContent=msg + ` (${diffNames[diff]} 최고점 기준)`;
-  $('enb').innerHTML=isNew ? `<span class="new-best">🎉 ${diffNames[diff]} 난이도 새로운 최고 기록!</span>` : '';
-  const o=$('eov');
-  o.style.display='flex';
-  requestAnimationFrame(()=>o.classList.add('show'));
+  const g=$('g4');g.innerHTML='';
+  sh([...nums]).forEach(n=>{
+    const b=document.createElement('button');
+    b.className='gb';
+    b.textContent=n;
+    b.dataset.v=n;
+    b.onclick=()=>{
+      if(!S4.ok)return;
+      if(S4.sel.has(n)){S4.sel.delete(n);b.classList.remove('sel')}
+      else{S4.sel.add(n);b.classList.add('sel')}
+      $('sb4').disabled=!S4.sel.size;
+    };
+    g.appendChild(b);
+  });
+}
+function sub4(){
+  if(!S4.ok)return;S4.ok=0;stopQTimer();
+  const cs=new Set(S4.cds);let ok=1;
+  if(S4.sel.size!==cs.size)ok=0;else for(const v of S4.sel)if(!cs.has(v)){ok=0;break}
+  document.querySelectorAll('#g4 .gb').forEach(b=>{const v=+b.dataset.v;if(cs.has(v)&&S4.sel.has(v))b.classList.add('ok');else if(cs.has(v)&&!S4.sel.has(v))b.classList.add('no');else if(!cs.has(v)&&S4.sel.has(v))b.classList.add('no')});
+  if(ok){const sp=getSpeedBonus();S4.sc+=20+sp;if(sp)showSpeedBonus(sp);toast('정답! 🎉',1)}
+  else{applyWrongPenalty(1);toast('틀렸어요!',0);$('h4t').textContent=S4.a+'의 약수: '+dvs(S4.a).join(', ')+'\n'+S4.b+'의 약수: '+dvs(S4.b).join(', ')+'\n공약수: '+S4.cds.join(', ');$('h4').classList.add('show')}
+  $('v4sc').textContent=S4.sc;setTimeout(nx4,ok?900:2200);
 }
 
-function replay(){$('eov').classList.remove('show');$('eov').style.display='none';[,st1,st2,st3,st4,st5,st6][CS]()}
-function tohome(){$('eov').classList.remove('show');$('eov').style.display='none';back()}
+let S5={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};
+function st5(){S5={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};tL=tT=90;$('v5tm').textContent=90;$('v5sc').textContent=0;$('v5st').textContent=0;uBar('b5');nx5();sTmr('v5tm','b5',()=>showEnd(5,S5.sc,eM(S5.sc,150,80,['최대공약수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
+function nx5(){
+  S5.rn++;S5.ok=1;
+  if(S5.rn>S5.mx){clearInterval(tmr);stopQTimer();showEnd(5,S5.sc,eM(S5.sc,150,80,['최대공약수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  $('e5').classList.remove('show');$('i5').value='';$('i5').className='ainp';
+  const d=dfs[4];let a,b;
+  if(d===0){const g=pk([2,3,4,5,6]);a=g*pk([2,3,4]);b=g*pk([2,3,5]);if(a===b)b=g*pk([3,5,7])}
+  else if(d===1){const g=pk([4,6,8,9,12]);a=g*pk([2,3,5]);b=g*pk([3,4,7])}
+  else{const g=pk([6,8,12,15,18]);a=g*pk([3,5,7]);b=g*pk([4,5,11])}
+  S5.a=a;S5.b=b;S5.ans=GCD(a,b);$('n5a').textContent=a;$('n5b').textContent=b;
+  startQTimer(5,d===0?15:d===1?20:25);$('i5').focus();
+}
+function sub5(){
+  if(!S5.ok)return;
+  const inp=$('i5'),v=parseInt(inp.value);
+  if(isNaN(v))return;
+  S5.ok=0;stopQTimer();
+  if(v===S5.ans){
+    inp.className='ainp aok';
+    const sp=getSpeedBonus();
+    S5.sc+=15+S5.st*3+sp;
+    S5.st++;
+    if(S5.st>S5.bs)S5.bs=S5.st;
+    if(sp)showSpeedBonus(sp);
+    toast('정답! 🎉',1);
+  }else{
+    inp.className='ainp ano';
+    S5.st=0;
+    applyWrongPenalty(1);
+    toast('오답! 정답: '+S5.ans,0);
+    const da=dvs(S5.a),db=dvs(S5.b),cd=commonDivisors(S5.a,S5.b);
+    $('e5').innerHTML=`<b>${S5.a}</b>의 약수: ${da.join(', ')}<br><b>${S5.b}</b>의 약수: ${db.join(', ')}<br>공약수: ${cd.join(', ')}<br>→ <b>최대공약수 = ${S5.ans}</b>`;
+    $('e5').classList.add('show');
+  }
+  $('v5sc').textContent=S5.sc;$('v5st').textContent=S5.st;
+  setTimeout(nx5,v===S5.ans?900:2500);
+}
 
-function uBar(id){const p=tL/tT*100;const b=$(id);b.style.width=p+'%';b.className='tmf '+(p>50?'tg':p>20?'ty':'tr')}
-function sTmr(tId,bId,cb){clearInterval(tmr);tmr=setInterval(()=>{tL--;$(tId).textContent=tL;uBar(bId);if(tL<=0){clearInterval(tmr);cb()}},1000)}
-function eM(s,a,b,c){return s>=a?c[0]:s>=b?c[1]:c[2]}
-
-document.addEventListener('click',e=>{
-  const btn=e.target.closest('.gb');if(!btn)return;
-  const r=document.createElement('span');r.className='ripple';
-  const rect=btn.getBoundingClientRect();
-  r.style.width=r.style.height=Math.max(rect.width,rect.height)+'px';
-  r.style.left=(e.clientX-rect.left-rect.width/2)+'px';
-  r.style.top=(e.clientY-rect.top-rect.height/2)+'px';
-  btn.appendChild(r);
-  setTimeout(()=>r.remove(),600);
-});
+let S6={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};
+function st6(){S6={sc:0,st:0,bs:0,a:0,b:0,ans:0,ok:1,rn:0,mx:10};tL=tT=90;$('v6tm').textContent=90;$('v6sc').textContent=0;$('v6st').textContent=0;uBar('b6');nx6();sTmr('v6tm','b6',()=>showEnd(6,S6.sc,eM(S6.sc,150,80,['최소공배수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖'])))}
+function nx6(){
+  S6.rn++;S6.ok=1;
+  if(S6.rn>S6.mx){clearInterval(tmr);stopQTimer();showEnd(6,S6.sc,eM(S6.sc,150,80,['최소공배수 달인! 🏆','잘했어요! 💪','더 연습해봐요! 📖']));return}
+  $('e6').classList.remove('show');$('i6').value='';$('i6').className='ainp';
+  const d=dfs[5];let a,b;
+  if(d===0){a=pk([2,3,4,5,6]);b=pk([2,3,4,5,6,8,10]);if(a===b)b=a+pk([1,2,3])}
+  else if(d===1){a=pk([4,6,8,9,10,12]);b=pk([6,8,9,10,12,15]);if(a===b)b=a+pk([2,3,4])}
+  else{a=pk([8,12,14,15,18,20]);b=pk([10,12,16,18,21,24]);if(a===b)b=a+pk([3,5,7])}
+  S6.a=a;S6.b=b;S6.ans=LCM(a,b);$('n6a').textContent=a;$('n6b').textContent=b;
+  startQTimer(6,d===0?15:d===1?20:25);$('i6').focus();
+}
+function sub6(){
+  if(!S6.ok)return;
+  const inp=$('i6'),v=parseInt(inp.value);
+  if(isNaN(v))return;
+  S6.ok=0;stopQTimer();
+  if(v===S6.ans){
+    inp.className='ainp aok';
+    const sp=getSpeedBonus();
+    S6.sc+=15+S6.st*3+sp;
+    S6.st++;
+    if(S6.st>S6.bs)S6.bs=S6.st;
+    if(sp)showSpeedBonus(sp);
+    toast('정답! 🎉',1);
+  }else{
+    inp.className='ainp ano';
+    S6.st=0;
+    applyWrongPenalty(1);
+    toast('오답! 정답: '+S6.ans,0);
+    const g=GCD(S6.a,S6.b),ma=[],mb=[];
+    for(let i=1;i<=Math.min(12,S6.ans/S6.a);i++)ma.push(S6.a*i);
+    for(let i=1;i<=Math.min(12,S6.ans/S6.b);i++)mb.push(S6.b*i);
+    $('e6').innerHTML=`<b>${S6.a}</b>의 배수: ${ma.join(', ')}…<br><b>${S6.b}</b>의 배수: ${mb.join(', ')}…<br>→ <b>최소공배수 = ${S6.ans}</b><br><span style="font-size:.72rem;color:#9a8c60">(${S6.a}×${S6.b}÷최대공약수(${g}) = ${S6.ans})</span>`;
+    $('e6').classList.add('show');
+  }
+  $('v6sc').textContent=S6.sc;$('v6st').textContent=S6.st;
+  setTimeout(nx6,v===S6.ans?900:2500);
+}
+</script>
+</body>
+</html>
